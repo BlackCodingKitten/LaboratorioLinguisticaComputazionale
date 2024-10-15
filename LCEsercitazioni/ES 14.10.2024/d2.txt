@@ -1,0 +1,11 @@
+Another way of writing JSON to a file is by using json.dump() 
+method The JSON package has the “dump” function which directly 
+writes the dictionary to a file in the form of JSON, without 
+needing to convert it into an actual JSON object. It takes 2
+ parameters:is the opposite of Serialization, i.e. conversion 
+ of JSON objects into their respective Python objects. The load()
+  method is used for it. If you have used JSON data from another
+   program or obtained it as a string format of JSON, then it can 
+   easily be deserialized with load()
+, which is usually used to load from a 
+string, otherwise, the root object is in a list or Dict.
