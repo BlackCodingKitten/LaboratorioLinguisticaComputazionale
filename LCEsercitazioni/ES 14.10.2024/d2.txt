@@ -1,11 +1,32 @@
-Another way of writing JSON to a file is by using json.dump() 
-method The JSON package has the “dump” function which directly 
-writes the dictionary to a file in the form of JSON, without 
-needing to convert it into an actual JSON object. It takes 2
- parameters:is the opposite of Serialization, i.e. conversion 
- of JSON objects into their respective Python objects. The load()
-  method is used for it. If you have used JSON data from another
-   program or obtained it as a string format of JSON, then it can 
-   easily be deserialized with load()
-, which is usually used to load from a 
-string, otherwise, the root object is in a list or Dict.
+The increasing prevalence of autism spectrum disorder makes it imperative for designers to help these children by designing their own products that include some gaming strategies that can make using these tools easier and more enjoyable for them. Because of the difficulty of using available design techniques to design products suitable for developing the skills of autistic children. Products for autistic children suffer from difficulties in use that parents and treatment specialists face. In addition, it is not suitable for the nature of the consumer, who needs products that contribute to helping them overcome their daily problems. Therefore, the research aims to build a clear vision of design techniques that help in designing products that can help children with autism spectrum disorder. And explore the most important design techniques that influence generating design ideas using play techniques to help autistic patients. As well as choosing the most valid and effective techniques in the field of designing toy products especially for autistic children. By determining its capabilities and capabilities in achieving the desired goal and what are the obstacles that the designer or user may face, as this study assumes that a clear model of the design process can be built using game techniques suitable for product designers. Game design techniques can also be used in designing products for autism, facilitating the designer’s work. Also, designing products in an organized manner according to gamification techniques is beneficial for autistic children, as products designed using gamification techniques support the families and specialists treating autistic children in performing their mission in simplifying the burden of daily problems facing these children. Using an inductive and descriptive approach (analytical - survey - statistical) - experimental to find a comprehensive and clear model that can be considered one of the design techniques using play techniques to help designers in the field of teaching product design to special groups. It can also be useful in designing and producing products that can help rehabilitate children with autism spectrum disorder using the most valid design methods.1. Sheikh Deeb, Raed. (2004). Design a training program to develop communication and social skills and self-independence among autistic children and measure its effectiveness. Unpublished doctoral research thesis. University of Jordan: Amman-Jordan 2. Al-Rusan, Farouk Al-Kilani, Abdullah (2006), Measurement and Diagnosis in Special Education, 2nd edition, Amman, Dar Al-Fikr for Printing, Publishing and Distribution. 3. Tony Buzan, The Power of Creative Intelligence, Jarir Bookstore, 4th edition, 2013 4. Raed Al-Abadi, Autism, Arab Society Library for Publishing and Distribution, Amman, 2006 5. Zainab Shuqair, A Call from the Disabled Son, Egyptian Nahda Library, Cairo, 2002 6. Abdul Rahman Sayed Suleiman, (2002), Autistic Disability, 2nd edition, Zahran Al-Sharq Library, Cairo, Egypt. 7. Lana Haroun, Developing a Jordanian version of the Autistic Behavior Evaluation List, unpublished master’s thesis, University of Jordan, Amman, 2008. 8. Lina Omar Siddiq, The effectiveness of a proposed program for developing nonverbal communication skills for autistic children and its impact on their social behavior, unpublished doctoral dissertation, University of Jordan, Amman, Jordan, 2005. 9. Hanaa Mohamed Salama, the sketch and its role in product marketing, Master’s thesis, Department of Metal Products and Jewelry, Faculty of Applied Arts, Helwan University, 2019 10. 10. Hebat Allah Massad (D), Strategy for Medal Design in Light of Digital Technology Systems, Ph.D., Faculty of Applied Arts, Department of Metal Products and Jewelry, Helwan University, 2009 11. 11. Wafaa Al-Shami, The Secrets of Autism, Its Forms, Causes, and Diagnosis, Jeddah Autism Center, Jeddah, Saudi Arabia, 2004. 12. 12. Al-Shaima Sabry Muhammad, Design Documents to Achieve Competitive Advantage for the Metal Product, Department of Metal Products and Jewelry, Faculty of Applied Arts, Helwan University, Egypt, 2021 13. 13. Samaa Ahmed Waheed (D), Product Design Between Design Theories, PhD thesis, Faculty of Applied Arts, Department of Metal Products and Jewelry, Helwan University, Egypt. 14. 14. Muhammad Hamdan, Autism in Children, Its Disorders, Diagnosis, and Treatment, Dar Al-Tarbeya Al-Modern, Kuwait, 2002
+much a putting together as it is a discovery of a path,
+and that the overwhelming majority of an editor's time
+is not spent actually splicing film. The more film there
+is to work with, of course, the greater the number of
+pathways that can be considered, and the possibilities
+compound upon each other and consequently
+demand more time for evaluation. This is true for any
+film with a high shooting ratio, but in the particular
+case of Apocalypse the effect was magnified by a sensitive
+subject matter and a daring and unusual structure,
+technical innovations at every level, and the obligation
+felt by all concerned to do the very best work
+they were capable of. And perhaps most of all by the
+fact that this was, for Francis, a personal film, despite
+the large budget and the vast canvas of the subject.
+Regrettably few films combine such qualities and aspirations.
+For every splice in the finished film there were
+probably fifteen "shadow" splices-splices made, considered,
+and then undone or lifted from the film. But
+even allowing for that, the remaining eleven hours
+and fifty-eight minutes of each working day were spent
+in activities that, in their various ways, served to clear
+and illuminate the path ahead of us: screenings, discussions,
+rewinding, re-screenings, meetings, scheduling,
+filing trims, note-taking, bookkeeping, and lots
+of plain deliberative thought. A vast amount of preparation,
+really, to arrive at the innocuously brief moment
+of decisive action: the cut-the moment of transition
+from one shot to the next-something that,
+appropriately enough, should look almost self-evidently
+simple and effortless, if it is even noticed at all.
