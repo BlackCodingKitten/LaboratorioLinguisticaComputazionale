@@ -13,11 +13,13 @@ BONUS:
         • Scrive la stringa stringa su <filename> (file aperto in modalità scrittura)
 """
 
-
 import nltk
 nltk.download('punkt_tab')
+
 import sys
 import datetime
+
+
 def read_file(file_path):
     """funzione che prende in input il contenuto testuale di un file e tramite l'impiego di nltk tokenizer restituisce la lista dei token
 
@@ -39,7 +41,6 @@ def read_file(file_path):
     except IOError:
         print(f"Errore generico di lettura del file {file_path}")
         return "-1"
-
 
 
 def tokens_extractor(file_contents):
@@ -82,14 +83,14 @@ def write_output(tokens_lists, sentences_lists, types_lists, files):
         if(len(types_lists[i])> max_types_n[1]):
              max_types_n=(files[i],len(types_lists[i]))
     
-    result="\n\nRISULTATO DEL CONFRONTO TRA FILE:\nMax Sentences:\tIl file con il numero maggiore di frasi e' "+(max_sentences_n[0].split("/"))[-1]+" e contiene "+str(max_sentences_n[1])+" frasi.\n"+"Max Tokens:\t"+"Il file con il numero maggiore di token e' "+(max_tokens_n[0].split("/"))[-1]+" e contiene "+str(max_tokens_n[1])+" token.\n"+"Max Type\t"+"Il file con il numero maggiore di tipi e' "+(max_types_n[0].split("/"))[-1]+" e contiene "+str(max_types_n[1])+" tipi.\n"
+    result="RISULTATO DEL CONFRONTO TRA FILE:\nMax Sentences:\tIl file con il numero maggiore di frasi e' "+(max_sentences_n[0].split("/"))[-1]+" e contiene "+str(max_sentences_n[1])+" frasi.\n"+"Max Tokens:\t"+"Il file con il numero maggiore di token e' "+(max_tokens_n[0].split("/"))[-1]+" e contiene "+str(max_tokens_n[1])+" token.\n"+"Max Type:\t"+"Il file con il numero maggiore di tipi e' "+(max_types_n[0].split("/"))[-1]+" e contiene "+str(max_types_n[1])+" tipi.\n"
     
     with open("/home/mikela/Documents/LaboratoriLinguisticaComputazionale/LCEsercitazioni/ES 14.10.2024/results/results"+str(datetime.datetime.now())+".txt", "w") as results_file:
-        results_file.write("\n"+result+"\n")
+        results_file.write(result+"\n")
         for i in range(0,len(files)):
             string_to_write=("NOME DEL FILE:\t"+files[i]+"\n")
             string_to_write+="\nIl file contiene "+str(len(sentences_lists[i]))+" frasi, "+str(len(tokens_lists[i]))+" token e "+str(len(types_lists))+" tipi\n\n"
-            string_to_write+="-"*15+"LISTA DELLE FRASI:\n"+"\n".join(sentences_lists[i])+"\n"
+            string_to_write+="-"*15+"LISTA DELLE FRASI(ogni frase e' delimitata da una freccia):\n\n"+"\n-->".join(sentences_lists[i])+"\n"
             string_to_write+="-"*15+"LISTA DEI TOKEN:\n"+"\n".join(sorted(tokens_lists[i]))+"\n"
             string_to_write+="-"*15+"VOCABOLARIO DEI TIPI:\n"+"\n".join(sorted(types_lists[i]))+"\n"
             string_to_write+="\n\n\n"

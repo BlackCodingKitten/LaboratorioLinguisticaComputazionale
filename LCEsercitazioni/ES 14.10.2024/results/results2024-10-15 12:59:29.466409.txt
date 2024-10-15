@@ -1,110 +1,108 @@
-
-
-
 RISULTATO DEL CONFRONTO TRA FILE:
 Max Sentences:	Il file con il numero maggiore di frasi e' d1.txt e contiene 79 frasi.
 Max Tokens:	Il file con il numero maggiore di token e' d2.txt e contiene 1102 token.
-Max Type	Il file con il numero maggiore di tipi e' d2.txt e contiene 473 tipi.
+Max Type:	Il file con il numero maggiore di tipi e' d2.txt e contiene 473 tipi.
 
 NOME DEL FILE:	/home/mikela/Documents/LaboratoriLinguisticaComputazionale/LCEsercitazioni/ES 14.10.2024/d1.txt
 
-Il file contiene 79 frasi, 933 token e 2 tipi
+Il file contiene 79 frasi, 933 token e 3 tipi
 
----------------LISTA DELLE FRASI:
+---------------LISTA DELLE FRASI(ogni frase e' delimitata da una freccia):
+
 Instructions for the submission of the solution
 The candidate has to submit two files: (i) one file containing the ontology in Turtle format, with extension
 .ttl or .owl; (ii) one file in PDF format, containing the answers to each question starting from Q8.
-The solution must be submitted via the Moodle of the course no later than the 11th of July at 8 PM Italian time.
-Any file received after that time will not be considered valid for the exam.
-Exercise
+-->The solution must be submitted via the Moodle of the course no later than the 11th of July at 8 PM Italian time.
+-->Any file received after that time will not be considered valid for the exam.
+-->Exercise
 The fundamental concepts in an application domain related to movies are: movie, director, release date, and cinema.
-In this domain, a movie is considered as the conceptual and artistic outcome of a creative process (and not a physical object).
-Some of the facts that characterize this domain can be stated as follows:
+-->In this domain, a movie is considered as the conceptual and artistic outcome of a creative process (and not a physical object).
+-->Some of the facts that characterize this domain can be stated as follows:
 1.
-Each movie has exactly one title (a string) and one director.
-2.
-A movie is identified by an ISAN (a string).
-3.
-The movie belongs to at least one genre.
-4.
-A movie has a release date.
-5.
-A movie is screened in exactly one cinema.
-The cinema can be public or private.
-The cinema is located in exactly one place.
-6.
-A movie is included in at least one film festival.
-7.
-The film festival has a name (a string) and is located in exactly one place.
-8.
-A film festival is organized by exactly one organization.
-The organization is identified by a name (a string) and a VAT (a positive integer).
-9.
-The organization has an agreement with the cinema in which the movie is screened.
-10.
-An organization organizes more than one film festival.
-11.
-A film festival has a budget (a positive integer).
-12.
-The organization collaborates with more than one distributor.
-13.
-Movie, film festival, director, cinema, place, genre, organization, and distributor are pairwise disjoint concepts.
-The candidate should express all the above statements in an OWL 2 DL ontology, using the RDF Turtle notation.
-In particular, the ontology must:
+-->Each movie has exactly one title (a string) and one director.
+-->2.
+-->A movie is identified by an ISAN (a string).
+-->3.
+-->The movie belongs to at least one genre.
+-->4.
+-->A movie has a release date.
+-->5.
+-->A movie is screened in exactly one cinema.
+-->The cinema can be public or private.
+-->The cinema is located in exactly one place.
+-->6.
+-->A movie is included in at least one film festival.
+-->7.
+-->The film festival has a name (a string) and is located in exactly one place.
+-->8.
+-->A film festival is organized by exactly one organization.
+-->The organization is identified by a name (a string) and a VAT (a positive integer).
+-->9.
+-->The organization has an agreement with the cinema in which the movie is screened.
+-->10.
+-->An organization organizes more than one film festival.
+-->11.
+-->A film festival has a budget (a positive integer).
+-->12.
+-->The organization collaborates with more than one distributor.
+-->13.
+-->Movie, film festival, director, cinema, place, genre, organization, and distributor are pairwise disjoint concepts.
+-->The candidate should express all the above statements in an OWL 2 DL ontology, using the RDF Turtle notation.
+-->In particular, the ontology must:
 Q1.
-Declare the required classes, providing for each class a textual label and a concise textual description of the intension of the class, using the appropriate annotation properties from the RDF Schema vocabulary.
-Q2.
-Provide the sub-class axioms defining the class taxonomy.
-Q3.
-Declare the required object properties, providing for each property:
+-->Declare the required classes, providing for each class a textual label and a concise textual description of the intension of the class, using the appropriate annotation properties from the RDF Schema vocabulary.
+-->Q2.
+-->Provide the sub-class axioms defining the class taxonomy.
+-->Q3.
+-->Declare the required object properties, providing for each property:
 Q.1.
-a textual label, using the appropriate annotation property from the RDFS vocabulary
+-->a textual label, using the appropriate annotation property from the RDFS vocabulary
 Q3.2.
-a textual description of the intension of the property, using the appropriate annotation property from the RDFS vocabulary
+-->a textual description of the intension of the property, using the appropriate annotation property from the RDFS vocabulary
 Q3.3.
-one axiom defining the domain of the property Q3.4.
-one axiom defining the range of the property Q3.5.
-one axiom defining the inverse of the property
+-->one axiom defining the domain of the property Q3.4.
+-->one axiom defining the range of the property Q3.5.
+-->one axiom defining the inverse of the property
 Q3.6.
-any additional axioms expressing disjointness of the property with other object properties, and the property characteristics.
-Q4.
-Provide the sub-property axioms defining the object property taxonomy.
-Q5.
-Declare the required data properties, providing:
+-->any additional axioms expressing disjointness of the property with other object properties, and the property characteristics.
+-->Q4.
+-->Provide the sub-property axioms defining the object property taxonomy.
+-->Q5.
+-->Declare the required data properties, providing:
 Q5.1.
-a textual label, using the appropriate annotation property from the RDFS vocabulary
+-->a textual label, using the appropriate annotation property from the RDFS vocabulary
 Q5.2.
-a textual description of the intension of the property, using the appropriate annotation property from the RDFS vocabulary
+-->a textual description of the intension of the property, using the appropriate annotation property from the RDFS vocabulary
 Q5.3.
-one axiom defining the domain of the property Q5.4.
-one axiom defining the range of the property
+-->one axiom defining the domain of the property Q5.4.
+-->one axiom defining the range of the property
 Q5.5.
-any additional axioms expressing disjointness of the property with other data properties, and whether the property is functional.
-Q6.
-Define the axioms necessary for expressing any statement in 1 to 13 that has not already been expressed.
-Q7.
-Populate the ontology with at least one individual for each class, and at least one assertion for each property.
-In addition, the candidate must:
+-->any additional axioms expressing disjointness of the property with other data properties, and whether the property is functional.
+-->Q6.
+-->Define the axioms necessary for expressing any statement in 1 to 13 that has not already been expressed.
+-->Q7.
+-->Populate the ontology with at least one individual for each class, and at least one assertion for each property.
+-->In addition, the candidate must:
 Q8.
-Identify two different assertions that would make the ontology inconsistent.
-Q9.
-Define the complex role inclusion axiom capturing the fact that if an organization organizes a film festival that includes a movie that is screened in a cinema, then the organization has an agreement with that cinema.
-Q10.
-Verify if the created ontology (including the complex role inclusion axiom defined in Q9) satisfies the global restrictions on the axioms of an OWL 2 DL ontology.
-Q11.
-Write the following queries in SPARQL:
+-->Identify two different assertions that would make the ontology inconsistent.
+-->Q9.
+-->Define the complex role inclusion axiom capturing the fact that if an organization organizes a film festival that includes a movie that is screened in a cinema, then the organization has an agreement with that cinema.
+-->Q10.
+-->Verify if the created ontology (including the complex role inclusion axiom defined in Q9) satisfies the global restrictions on the axioms of an OWL 2 DL ontology.
+-->Q11.
+-->Write the following queries in SPARQL:
 Q11.1.
-Find the movies released between 2000 and 2010 and for each movie the cinema in which it is screened.
-Q11.2.
-Among all film festivals ordered by name alphabetically, find the name of three film festivals starting from the second result.
-Q11.3.
-For each film festival, find the movies that are included in it, the titles of these movies, and the name, unique ISAN, and the organization of the film festival.
-Q11.4.
-Find the budget of each film festival calculating a discount of 20%.
-Q11.5.
-Find the title and the director of each movie that is not classified as a specific genre (e.g., "Horror").
-Q11.6.
-Retrieve the maximum budget of the film festivals grouped by organization
+-->Find the movies released between 2000 and 2010 and for each movie the cinema in which it is screened.
+-->Q11.2.
+-->Among all film festivals ordered by name alphabetically, find the name of three film festivals starting from the second result.
+-->Q11.3.
+-->For each film festival, find the movies that are included in it, the titles of these movies, and the name, unique ISAN, and the organization of the film festival.
+-->Q11.4.
+-->Find the budget of each film festival calculating a discount of 20%.
+-->Q11.5.
+-->Find the title and the director of each movie that is not classified as a specific genre (e.g., "Horror").
+-->Q11.6.
+-->Retrieve the maximum budget of the film festivals grouped by organization
 ---------------LISTA DEI TOKEN:
 %
 ''
@@ -1331,73 +1329,74 @@ would
 
 NOME DEL FILE:	/home/mikela/Documents/LaboratoriLinguisticaComputazionale/LCEsercitazioni/ES 14.10.2024/d2.txt
 
-Il file contiene 48 frasi, 1102 token e 2 tipi
+Il file contiene 48 frasi, 1102 token e 3 tipi
 
----------------LISTA DELLE FRASI:
+---------------LISTA DELLE FRASI(ogni frase e' delimitata da una freccia):
+
 The increasing prevalence of autism spectrum disorder makes it imperative for designers to help these children by designing their own products that include some gaming strategies that can make using these tools easier and more enjoyable for them.
-Because of the difficulty of using available design techniques to design products suitable for developing the skills of autistic children.
-Products for autistic children suffer from difficulties in use that parents and treatment specialists face.
-In addition, it is not suitable for the nature of the consumer, who needs products that contribute to helping them overcome their daily problems.
-Therefore, the research aims to build a clear vision of design techniques that help in designing products that can help children with autism spectrum disorder.
-And explore the most important design techniques that influence generating design ideas using play techniques to help autistic patients.
-As well as choosing the most valid and effective techniques in the field of designing toy products especially for autistic children.
-By determining its capabilities and capabilities in achieving the desired goal and what are the obstacles that the designer or user may face, as this study assumes that a clear model of the design process can be built using game techniques suitable for product designers.
-Game design techniques can also be used in designing products for autism, facilitating the designer’s work.
-Also, designing products in an organized manner according to gamification techniques is beneficial for autistic children, as products designed using gamification techniques support the families and specialists treating autistic children in performing their mission in simplifying the burden of daily problems facing these children.
-Using an inductive and descriptive approach (analytical - survey - statistical) - experimental to find a comprehensive and clear model that can be considered one of the design techniques using play techniques to help designers in the field of teaching product design to special groups.
-It can also be useful in designing and producing products that can help rehabilitate children with autism spectrum disorder using the most valid design methods.1.
-Sheikh Deeb, Raed.
-(2004).
-Design a training program to develop communication and social skills and self-independence among autistic children and measure its effectiveness.
-Unpublished doctoral research thesis.
-University of Jordan: Amman-Jordan 2.
-Al-Rusan, Farouk Al-Kilani, Abdullah (2006), Measurement and Diagnosis in Special Education, 2nd edition, Amman, Dar Al-Fikr for Printing, Publishing and Distribution.
-3.
-Tony Buzan, The Power of Creative Intelligence, Jarir Bookstore, 4th edition, 2013 4.
-Raed Al-Abadi, Autism, Arab Society Library for Publishing and Distribution, Amman, 2006 5.
-Zainab Shuqair, A Call from the Disabled Son, Egyptian Nahda Library, Cairo, 2002 6.
-Abdul Rahman Sayed Suleiman, (2002), Autistic Disability, 2nd edition, Zahran Al-Sharq Library, Cairo, Egypt.
-7.
-Lana Haroun, Developing a Jordanian version of the Autistic Behavior Evaluation List, unpublished master’s thesis, University of Jordan, Amman, 2008.
-8.
-Lina Omar Siddiq, The effectiveness of a proposed program for developing nonverbal communication skills for autistic children and its impact on their social behavior, unpublished doctoral dissertation, University of Jordan, Amman, Jordan, 2005.
-9.
-Hanaa Mohamed Salama, the sketch and its role in product marketing, Master’s thesis, Department of Metal Products and Jewelry, Faculty of Applied Arts, Helwan University, 2019 10.
-10.
-Hebat Allah Massad (D), Strategy for Medal Design in Light of Digital Technology Systems, Ph.D., Faculty of Applied Arts, Department of Metal Products and Jewelry, Helwan University, 2009 11.
-11.
-Wafaa Al-Shami, The Secrets of Autism, Its Forms, Causes, and Diagnosis, Jeddah Autism Center, Jeddah, Saudi Arabia, 2004.
-12.
-12.
-Al-Shaima Sabry Muhammad, Design Documents to Achieve Competitive Advantage for the Metal Product, Department of Metal Products and Jewelry, Faculty of Applied Arts, Helwan University, Egypt, 2021 13.
-13.
-Samaa Ahmed Waheed (D), Product Design Between Design Theories, PhD thesis, Faculty of Applied Arts, Department of Metal Products and Jewelry, Helwan University, Egypt.
-14.
-14.
-Muhammad Hamdan, Autism in Children, Its Disorders, Diagnosis, and Treatment, Dar Al-Tarbeya Al-Modern, Kuwait, 2002
+-->Because of the difficulty of using available design techniques to design products suitable for developing the skills of autistic children.
+-->Products for autistic children suffer from difficulties in use that parents and treatment specialists face.
+-->In addition, it is not suitable for the nature of the consumer, who needs products that contribute to helping them overcome their daily problems.
+-->Therefore, the research aims to build a clear vision of design techniques that help in designing products that can help children with autism spectrum disorder.
+-->And explore the most important design techniques that influence generating design ideas using play techniques to help autistic patients.
+-->As well as choosing the most valid and effective techniques in the field of designing toy products especially for autistic children.
+-->By determining its capabilities and capabilities in achieving the desired goal and what are the obstacles that the designer or user may face, as this study assumes that a clear model of the design process can be built using game techniques suitable for product designers.
+-->Game design techniques can also be used in designing products for autism, facilitating the designer’s work.
+-->Also, designing products in an organized manner according to gamification techniques is beneficial for autistic children, as products designed using gamification techniques support the families and specialists treating autistic children in performing their mission in simplifying the burden of daily problems facing these children.
+-->Using an inductive and descriptive approach (analytical - survey - statistical) - experimental to find a comprehensive and clear model that can be considered one of the design techniques using play techniques to help designers in the field of teaching product design to special groups.
+-->It can also be useful in designing and producing products that can help rehabilitate children with autism spectrum disorder using the most valid design methods.1.
+-->Sheikh Deeb, Raed.
+-->(2004).
+-->Design a training program to develop communication and social skills and self-independence among autistic children and measure its effectiveness.
+-->Unpublished doctoral research thesis.
+-->University of Jordan: Amman-Jordan 2.
+-->Al-Rusan, Farouk Al-Kilani, Abdullah (2006), Measurement and Diagnosis in Special Education, 2nd edition, Amman, Dar Al-Fikr for Printing, Publishing and Distribution.
+-->3.
+-->Tony Buzan, The Power of Creative Intelligence, Jarir Bookstore, 4th edition, 2013 4.
+-->Raed Al-Abadi, Autism, Arab Society Library for Publishing and Distribution, Amman, 2006 5.
+-->Zainab Shuqair, A Call from the Disabled Son, Egyptian Nahda Library, Cairo, 2002 6.
+-->Abdul Rahman Sayed Suleiman, (2002), Autistic Disability, 2nd edition, Zahran Al-Sharq Library, Cairo, Egypt.
+-->7.
+-->Lana Haroun, Developing a Jordanian version of the Autistic Behavior Evaluation List, unpublished master’s thesis, University of Jordan, Amman, 2008.
+-->8.
+-->Lina Omar Siddiq, The effectiveness of a proposed program for developing nonverbal communication skills for autistic children and its impact on their social behavior, unpublished doctoral dissertation, University of Jordan, Amman, Jordan, 2005.
+-->9.
+-->Hanaa Mohamed Salama, the sketch and its role in product marketing, Master’s thesis, Department of Metal Products and Jewelry, Faculty of Applied Arts, Helwan University, 2019 10.
+-->10.
+-->Hebat Allah Massad (D), Strategy for Medal Design in Light of Digital Technology Systems, Ph.D., Faculty of Applied Arts, Department of Metal Products and Jewelry, Helwan University, 2009 11.
+-->11.
+-->Wafaa Al-Shami, The Secrets of Autism, Its Forms, Causes, and Diagnosis, Jeddah Autism Center, Jeddah, Saudi Arabia, 2004.
+-->12.
+-->12.
+-->Al-Shaima Sabry Muhammad, Design Documents to Achieve Competitive Advantage for the Metal Product, Department of Metal Products and Jewelry, Faculty of Applied Arts, Helwan University, Egypt, 2021 13.
+-->13.
+-->Samaa Ahmed Waheed (D), Product Design Between Design Theories, PhD thesis, Faculty of Applied Arts, Department of Metal Products and Jewelry, Helwan University, Egypt.
+-->14.
+-->14.
+-->Muhammad Hamdan, Autism in Children, Its Disorders, Diagnosis, and Treatment, Dar Al-Tarbeya Al-Modern, Kuwait, 2002
 much a putting together as it is a discovery of a path,
 and that the overwhelming majority of an editor's time
 is not spent actually splicing film.
-The more film there
+-->The more film there
 is to work with, of course, the greater the number of
 pathways that can be considered, and the possibilities
 compound upon each other and consequently
 demand more time for evaluation.
-This is true for any
+-->This is true for any
 film with a high shooting ratio, but in the particular
 case of Apocalypse the effect was magnified by a sensitive
 subject matter and a daring and unusual structure,
 technical innovations at every level, and the obligation
 felt by all concerned to do the very best work
 they were capable of.
-And perhaps most of all by the
+-->And perhaps most of all by the
 fact that this was, for Francis, a personal film, despite
 the large budget and the vast canvas of the subject.
-Regrettably few films combine such qualities and aspirations.
-For every splice in the finished film there were
+-->Regrettably few films combine such qualities and aspirations.
+-->For every splice in the finished film there were
 probably fifteen "shadow" splices-splices made, considered,
 and then undone or lifted from the film.
-But
+-->But
 even allowing for that, the remaining eleven hours
 and fifty-eight minutes of each working day were spent
 in activities that, in their various ways, served to clear
@@ -1405,7 +1404,7 @@ and illuminate the path ahead of us: screenings, discussions,
 rewinding, re-screenings, meetings, scheduling,
 filing trims, note-taking, bookkeeping, and lots
 of plain deliberative thought.
-A vast amount of preparation,
+-->A vast amount of preparation,
 really, to arrive at the innocuously brief moment
 of decisive action: the cut-the moment of transition
 from one shot to the next-something that,
@@ -2988,6 +2987,664 @@ with
 work
 working
 ’
+
+
+
+NOME DEL FILE:	/home/mikela/Documents/LaboratoriLinguisticaComputazionale/LCEsercitazioni/ES 14.10.2024/d3.txt
+
+Il file contiene 13 frasi, 400 token e 3 tipi
+
+---------------LISTA DELLE FRASI(ogni frase e' delimitata da una freccia):
+
+The “hole and tear” effect—whereby canine teeth anchor the person while other teeth bite, shear, and tear the tissues—results in stretch lacerations, easily piercing immature cranial bones.
+-->The biting force of canine jaws varies with the breed, from 310 kPa to nearly 31 790 kPa in specially trained attack dogs.w1 w2 Large wounds, significant devitalisation, and high mortality can result, with the highest mortality in neonates (six times that in toddlers), who are usually bitten by household pets.This review is aimed at clinicians who deal with dog bites.
+-->The basic principles of wound management and indications for use of antimicrobials and rabies prophylaxis apply to clinicians in all countries, but the primary focus of this article will be the UK.
+-->Overall, the clinical approach in the UK to management of dog bites is pragmatic and based largely on consensus opinion rather than firm evidence.
+-->The major basis for recommending co-amoxiclav is in-vitro sensitivity data of organisms related to dog bites, and most authorities recommend using prophylactic antimicrobials in selected patients at high risk of infection.
+-->We reviewed the Cochrane Library and performed Medline searches to identify relevant systematic reviews on the management of dog bites, using the keywords “dog-bites”, “reviews”, “prophylaxis”, and “treatment”.
+-->We consulted personal archives, Clinical Evidence, and UK national NHS (Prodigy) guidelines.
+-->Of the estimated 740 people per 100 000 population bitten by dogs annually,4 a minority seek medical attention.
+-->Overall, 2.6/100 000 population need hospital admission.
+-->Half of all children are reportedly bitten by dogs at some time, boys more than girls.
+-->A recent telephone survey of 1184 families found that the annual incidence of bites in children aged under 15 years was 22/1000.5
+
+Accurate mortality figures are poorly documented in the medical literature and difficult to obtain.
+-->However, because deaths are newsworthy, the popular press reports are probably reliable indicators of the true number in the UK, and during the past five years, two to three cases a year have made headlines.
+-->In the United States annual mortality is 7.1/100 million population, with 57% of deaths occurring in children aged under 10 years.
+---------------LISTA DEI TOKEN:
+%
+(
+(
+)
+)
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+,
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+000
+000
+10
+100
+1184
+15
+2.6/100
+22/1000.5
+31
+310
+57
+7.1/100
+740
+790
+A
+Accurate
+Clinical
+Cochrane
+Evidence
+Half
+However
+In
+Large
+Library
+Medline
+NHS
+Of
+Overall
+Overall
+Prodigy
+States
+The
+The
+The
+The
+UK
+UK
+UK
+UK
+United
+We
+We
+a
+a
+admission
+aged
+aged
+aimed
+all
+all
+anchor
+and
+and
+and
+and
+and
+and
+and
+and
+and
+and
+and
+and
+annual
+annual
+annually,4
+antimicrobials
+antimicrobials
+apply
+approach
+archives
+are
+are
+are
+are
+are
+article
+at
+at
+at
+attack
+attention
+authorities
+based
+basic
+basis
+be
+because
+bite
+bites
+bites
+bites
+bites
+bites
+biting
+bitten
+bitten
+bitten
+bones
+boys
+breed
+but
+by
+by
+by
+can
+canine
+canine
+cases
+children
+children
+children
+clinical
+clinicians
+clinicians
+co-amoxiclav
+consensus
+consulted
+countries
+cranial
+data
+deal
+deaths
+deaths
+devitalisation
+difficult
+documented
+dog
+dog
+dog
+dog
+dog-bites
+dogs
+dogs
+dogs.w1
+during
+easily
+effect—whereby
+estimated
+evidence
+families
+figures
+firm
+five
+focus
+for
+for
+force
+found
+from
+girls
+guidelines
+have
+headlines
+high
+high
+highest
+hole
+hospital
+household
+identify
+immature
+in
+in
+in
+in
+in
+in
+in
+in
+in
+in
+in
+in-vitro
+incidence
+indications
+indicators
+infection
+is
+is
+is
+is
+jaws
+kPa
+kPa
+keywords
+lacerations
+largely
+literature
+made
+major
+management
+management
+management
+medical
+medical
+million
+minority
+more
+mortality
+mortality
+mortality
+mortality
+most
+national
+nearly
+need
+neonates
+newsworthy
+number
+obtain
+occurring
+of
+of
+of
+of
+of
+of
+of
+of
+of
+of
+of
+of
+of
+on
+on
+opinion
+organisms
+other
+past
+patients
+people
+per
+performed
+person
+personal
+pets.This
+piercing
+poorly
+popular
+population
+population
+population
+pragmatic
+press
+primary
+principles
+probably
+prophylactic
+prophylaxis
+prophylaxis
+rabies
+rather
+recent
+recommend
+recommending
+related
+relevant
+reliable
+reportedly
+reports
+result
+review
+reviewed
+reviews
+reviews
+risk
+searches
+seek
+selected
+sensitivity
+shear
+significant
+six
+some
+specially
+stretch
+survey
+systematic
+tear
+tear
+teeth
+teeth
+telephone
+than
+than
+that
+that
+the
+the
+the
+the
+the
+the
+the
+the
+the
+the
+the
+the
+the
+the
+the
+the
+the
+the
+the
+this
+three
+time
+times
+tissues—results
+to
+to
+to
+to
+to
+to
+to
+toddlers
+trained
+treatment
+true
+two
+under
+under
+use
+using
+using
+usually
+varies
+w2
+was
+while
+who
+who
+will
+with
+with
+with
+with
+wound
+wounds
+year
+years
+years
+years
+“
+“
+“
+“
+“
+”
+”
+”
+”
+”
+---------------VOCABOLARIO DEI TIPI:
+%
+(
+)
+,
+.
+000
+10
+100
+1184
+15
+2.6/100
+22/1000.5
+31
+310
+57
+7.1/100
+740
+790
+A
+Accurate
+Clinical
+Cochrane
+Evidence
+Half
+However
+In
+Large
+Library
+Medline
+NHS
+Of
+Overall
+Prodigy
+States
+The
+UK
+United
+We
+a
+admission
+aged
+aimed
+all
+anchor
+and
+annual
+annually,4
+antimicrobials
+apply
+approach
+archives
+are
+article
+at
+attack
+attention
+authorities
+based
+basic
+basis
+be
+because
+bite
+bites
+biting
+bitten
+bones
+boys
+breed
+but
+by
+can
+canine
+cases
+children
+clinical
+clinicians
+co-amoxiclav
+consensus
+consulted
+countries
+cranial
+data
+deal
+deaths
+devitalisation
+difficult
+documented
+dog
+dog-bites
+dogs
+dogs.w1
+during
+easily
+effect—whereby
+estimated
+evidence
+families
+figures
+firm
+five
+focus
+for
+force
+found
+from
+girls
+guidelines
+have
+headlines
+high
+highest
+hole
+hospital
+household
+identify
+immature
+in
+in-vitro
+incidence
+indications
+indicators
+infection
+is
+jaws
+kPa
+keywords
+lacerations
+largely
+literature
+made
+major
+management
+medical
+million
+minority
+more
+mortality
+most
+national
+nearly
+need
+neonates
+newsworthy
+number
+obtain
+occurring
+of
+on
+opinion
+organisms
+other
+past
+patients
+people
+per
+performed
+person
+personal
+pets.This
+piercing
+poorly
+popular
+population
+pragmatic
+press
+primary
+principles
+probably
+prophylactic
+prophylaxis
+rabies
+rather
+recent
+recommend
+recommending
+related
+relevant
+reliable
+reportedly
+reports
+result
+review
+reviewed
+reviews
+risk
+searches
+seek
+selected
+sensitivity
+shear
+significant
+six
+some
+specially
+stretch
+survey
+systematic
+tear
+teeth
+telephone
+than
+that
+the
+this
+three
+time
+times
+tissues—results
+to
+toddlers
+trained
+treatment
+true
+two
+under
+use
+using
+usually
+varies
+w2
+was
+while
+who
+will
+with
+wound
+wounds
+year
+years
+“
+”
 
 
 
