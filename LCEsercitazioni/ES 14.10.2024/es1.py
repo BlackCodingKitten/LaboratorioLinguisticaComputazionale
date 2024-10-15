@@ -14,7 +14,7 @@ BONUS:
 """
 
 import nltk
-nltk.download('punkt_tab')
+# nltk.download('punkt_tab')
 
 import sys
 import datetime
@@ -69,10 +69,13 @@ def write_output(tokens_lists, sentences_lists, types_lists, files):
         types_lists (string list list): vocabolari dei testi
         files (string list ): nomi dei file
     """   
+
     max_types_n= ("",0) 
     max_tokens_n=("",0)
     max_sentences_n=("",0) 
+    
     for i in range(0, len(files)):
+        
         #controllo il counter maggiore delle frasi
         if(len(sentences_lists[i])>max_sentences_n[1]):
             max_sentences_n=(files[i],len(sentences_lists[i]))
@@ -85,7 +88,7 @@ def write_output(tokens_lists, sentences_lists, types_lists, files):
     
     result="RISULTATO DEL CONFRONTO TRA FILE:\nMax Sentences:\tIl file con il numero maggiore di frasi e' "+(max_sentences_n[0].split("/"))[-1]+" e contiene "+str(max_sentences_n[1])+" frasi.\n"+"Max Tokens:\t"+"Il file con il numero maggiore di token e' "+(max_tokens_n[0].split("/"))[-1]+" e contiene "+str(max_tokens_n[1])+" token.\n"+"Max Type:\t"+"Il file con il numero maggiore di tipi e' "+(max_types_n[0].split("/"))[-1]+" e contiene "+str(max_types_n[1])+" tipi.\n"
     
-    with open("/home/mikela/Documents/LaboratoriLinguisticaComputazionale/LCEsercitazioni/ES 14.10.2024/results/results"+str(datetime.datetime.now())+".txt", "w") as results_file:
+    with open("/home/mikela/Documents/LaboratorioLinguisticaComputazionale/LCEsercitazioni/ES 14.10.2024/results/results"+str(datetime.datetime.now())+".txt", "w") as results_file:
         results_file.write(result+"\n")
         for i in range(0,len(files)):
             string_to_write=("NOME DEL FILE:\t"+files[i]+"\n")
