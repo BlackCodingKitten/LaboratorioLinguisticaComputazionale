@@ -21,7 +21,7 @@ import datetime
 
 
 def read_file(file_path):
-    """funzione che prende in input il contenuto testuale di un file e tramite l'impiego di nltk tokenizer restituisce la lista dei token
+    """funzione che prende in input la path di un file e ne restituisce il contenuto
 
     Args:
         file_path (string): percorso del file da leggere
