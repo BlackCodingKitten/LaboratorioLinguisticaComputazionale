@@ -75,7 +75,7 @@ def main(argv):
     hapax_list =[]
     for type in frequency_abs_rel.keys():
         (absolute, relative)=frequency_abs_rel[type]
-        to_print+=type+":"+" "*(22-len(type))+"\t"+str(absolute)+"\t\t\t\t\t\t"+str(relative)+"\n"
+        to_print+=type+":"+" "*(22-len(type))+"\t"+str(absolute)+"\t\t\t\t\t"+str(relative)+"\n"
         if(absolute == 1):
             hapax_list.append(type)
             
