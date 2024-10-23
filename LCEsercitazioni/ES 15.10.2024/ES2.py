@@ -37,7 +37,7 @@ def tokenizer (text):
         text (_str_): stringa da tokenizzare
 
     Returns:
-        list: lista ordinata alfabeticamente dei token
+        list: lista ordinata alfabeticamente delle parole token
     """    
     t_list = []
     s_list = nltk.tokenize.sent_tokenize(text)
@@ -75,14 +75,16 @@ def main(argv):
     hapax_list =[]
     for type in frequency_abs_rel.keys():
         (absolute, relative)=frequency_abs_rel[type]
-        to_print+=type+":"+" "*(22-len(type))+"\t"+str(absolute)+"\t\t\t\t\t"+str(relative)+"\n"
+        to_print+=type+" "+" "*(22-len(type))+"\t"+str(absolute)+"\t\t\t\t\t"+str(relative)+"\n"
         if(absolute == 1):
             hapax_list.append(type)
             
     to_print+="\n"+"-"*13+"LISTA DEGLI HAPAX:\n"+str(hapax_list)
+    hapax_distr =len(hapax_list)/C
+    to_print+=f"\nLa ditribuzione degli hapax è{hapax_distr: .3f}\n"
  
     #scrivo l'output su un file
-    with open("/home/mikela/Documents/LaboratorioLinguisticaComputazionale/LCEsercitazioni/ES XX.10.2024/output_file_"+((argv[1].split("/"))[-1]).split(".")[0]+str(datetime.datetime.now())+".txt", "w") as output_file:
+    with open("/home/mikela/Documents/LaboratorioLinguisticaComputazionale/LCEsercitazioni/ES 15.10.2024/output_file_"+((argv[1].split("/"))[-1]).split(".")[0]+str(datetime.datetime.now())+".txt", "w") as output_file:
         output_file.write(to_print)
     output_file.close()
     return 

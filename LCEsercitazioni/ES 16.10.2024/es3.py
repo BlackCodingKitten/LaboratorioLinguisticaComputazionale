@@ -25,11 +25,38 @@ def tokenizer (text):
         tokens.extend(nltk.tokenize.word_tokenize(s))
     return tokens
 
+def output_string_generator(tokens):
+    """funzione che prende in input la lista dei token calcola le metriche del file e ritorna l'output formattato pronto da stampare
+
+    Args:
+        tokens (str list): listad ei tokens tokenizzati nel testo
+
+    Returns:
+        str: stringa con i risultati da stampare
+    """    
+    to_print=f"Il testo contiene {len(tokens)} parole token totali, le parole tipo totali sono {len(set(tokens))}.\n\n"
+    V = len(set(tokens))
+    C = len(tokens)
+    n_type_prec = 0
+    index = 0
+    for i in range (50,C,50):        
+        to_print+=f"{index+1+(i-50)}.) Nei primi {i} token la TTR è del {round((len(set(tokens[0:i]))/len(tokens[0:i]))*100,3)} %,\n"
+        to_print+=f"sono state individuate {len(set(tokens[0:i]))-n_type_prec} parole tipo nuove,\n"
+        to_print+=f"nei primi {i} token troviamo il {round((len(set(tokens[0:i]))/V)*100, 3)} % del vocabolario totale,\nla dimensione del vocabolario è cresciuta del {round(((len(set(tokens[0:i]))-n_type_prec)/V)*100,3)} %.\n\n"
+        n_type_prec = len(set(tokens[0:i]))
+    
+    # Ultima sezione della lista che viene esclusa dallo slicing
+    to_print+=f"{index+1}.) Nei primi {C} token la TTR è del {round((len(set(tokens[0:C]))/C)*100,3)} %,\n"
+    to_print+=f"sono state individuate {len(set(tokens[0:C]))-n_type_prec} parole tipo nuove,\n"
+    to_print+=f"nei primi {C} token troviamo il {round((len(set(tokens[0:C]))/V)*100, 3)} % del vocabolario totale,\nla dimensione del vocabolario è cresciuta del {round(((len(set(tokens[0:C]))-n_type_prec)/V)*100,3)} %.\n\n"
+    return to_print
+    
+
 
 def main (argv):
     #safe exit se non è stato passato nessun file
     if len(argv)<2:
-        print("Attehnzione! Non hai passato nessun file da input.")
+        print("Attenzione! Non hai passato nessun file da input.")
         return
     
     file_path = argv[1]
@@ -40,20 +67,7 @@ def main (argv):
         return
     #estraggo la lista dei token non ordinata
     tokens = tokenizer(file_content)
-    
-    to_print=f"Il testo contiene {len(tokens)} parole token totali, le parole tipo totali sono {len(set(tokens))}.\n\n"
-    V = len(set(tokens))
-    C = len(tokens)
-    n_type_prec = 0
-    index = 0
-    for i in range (50,len(tokens),50):
-        index+=1
-        to_print+=f"{index}.) Nei primi {i} token la TTR è del {round((len(set(tokens[0:i]))/len(tokens[0:i]))*100,3)} %,\n"
-        to_print+=f"sono state individuate {len(set(tokens[0:i]))-n_type_prec} parole tipo nuove,\n"
-        to_print+=f"nei primi {i} token troviamo il {round((len(set(tokens[0:i]))/V)*100, 3)} % del vocabolario totale,\nla dimensione del vocabolario è cresciuta del {round(((len(set(tokens[0:i]))-n_type_prec)/V)*100,3)} %.\n\n"
-        n_type_prec = len(set(tokens[0:i]))
-    
-    print(to_print)
+    print(output_string_generator(tokens))
         
     
 
