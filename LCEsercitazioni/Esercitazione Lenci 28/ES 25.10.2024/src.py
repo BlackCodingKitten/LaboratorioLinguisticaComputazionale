@@ -18,7 +18,11 @@ def readFile(path):
     keyList = []
     with open(path, "r") as filePtr:
         for token in filePtr:
+<<<<<<< HEAD
             keyList.append(token.strip())
+=======
+            keyList.append(token.rstrip())
+>>>>>>> 1ab8821a8a94976edaa287b0b4da7441edb4e2e2
         filePtr.close()
         for token in keyList:
             if token not in Vocabulary.keys():
@@ -50,6 +54,7 @@ def main (filePath):
     y = [len(v) for v in frequencyClassDic.values()]
     # print(x)
     # print(y)
+<<<<<<< HEAD
     plt.plot(x,y,marker='o', linestyle='-')
     plt.title("Spettro di Frequenze ")
     plt.xlabel("X =Indice Classe di Frequenza")
@@ -59,6 +64,14 @@ def main (filePath):
     plt.savefig("/home/mikela/Documents/LaboratorioLinguisticaComputazionale/LCEsercitazioni/Esercitazione Lenci 28/ES 25.10.2024/graficoSpettroDiFrequenza.svg")
     freqDesc = dict(OrderedDict(reversed(sorted(vocabulary.items(), key=lambda x:x[1]))))#ordina sulla base dei valori
     # print(freqDesc)
+=======
+    plt.plot(x,y)
+    plt.xlabel("X =Indice Classe di Frequenza")
+    plt.ylabel("Y = Numerosità della Classe")
+    plt.savefig("/home/mikela/Documents/LaboratorioLinguisticaComputazionale/LCEsercitazioni/Esercitazione Lenci 28/ES 25.10.2024/graficoSpettroDiFrequenza.svg")
+    freqDesc = dict(OrderedDict(reversed(sorted(vocabulary.items(), key=lambda x:x[1]))))#ordina sulla base dei valori
+    print(freqDesc)
+>>>>>>> 1ab8821a8a94976edaa287b0b4da7441edb4e2e2
     toPrint += "\n\nPAROLE\t\t\t\t\t\tFREQUENZE ASSOLUTE\t\tFREQUENZE RELATIVE\n\n"
     for k,v in vocabulary.items():
         toPrint += f"{k}\t\t\t\t\t\t{v}\t\t\t\t\t{round(v/len(tokens),3)}\n"
@@ -69,6 +82,7 @@ def main (filePath):
     for k,v in freqDesc.items():
             rango[r] = (k,v)
             r+=1
+<<<<<<< HEAD
             
     #a questo punto ho tutte le parole ordinate per rango 
     plt.cla()
@@ -89,6 +103,17 @@ def main (filePath):
     plt.close()
     # print(rango)      
     print(toPrint)
+=======
+    #a questo punto ho tutte le parole ordinate per rango 
+    plt.plot([round(numpy.log(x),3) for x in rango.keys()], [round(numpy.log(t[1]),3) for t in rango.values()])
+    plt.xlabel("Rango")
+    plt.ylabel("Frequenza")
+    plt.savefig("/home/mikela/Documents/LaboratorioLinguisticaComputazionale/LCEsercitazioni/Esercitazione Lenci 28/ES 25.10.2024/graficoZipf.svg")
+    # for i in range(0,r,1):
+        
+    # print(rango)      
+    # print(toPrint)
+>>>>>>> 1ab8821a8a94976edaa287b0b4da7441edb4e2e2
     
     return
 
