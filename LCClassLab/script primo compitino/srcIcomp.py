@@ -1,16 +1,11 @@
 import nltk
-import sys
 from matplotlib import pyplot as plt
 import re
 from collections import OrderedDict
 
-text = "Se riesci a tenere la testa a posto quando tutti intorno a te l'hanno persa e danno la colpa a te, se puoi avere fiducia in te stesso quando tutti dubitano di te, ma prendi in considerazione anche i loro dubbi."
-# text ="Era il tempo migliore e il tempo peggiore, la stagione della saggezza e la stagione della follia, l’epoca della fede e l’epoca dell’incredulità, il periodo della luce e il periodo delle tenebre, la primavera della speranza e l’inverno della disperazione."
-
-
-def tokenizer(testo, maiuscole_flag=False):
-    regex = "[,:\.!?;-]+"
-    regex2 = "[']"
+text = "Ogni individuo ha diritto alla vita, alla libertà ed alla sicurezza della propria persona. Nessun individuo potrà essere tenuto in stato di schiavitù o di servitù; la schiavitù e la tratta degli schiavi saranno proibite sotto qualsiasi forma."
+path="/mnt/c/Users/USER/Desktop/testo_tokenizzato.txt"
+def tokenizer_to_text(testo, maiuscole_flag=False):
     if(maiuscole_flag):
         print("-"*20+"DEBUG: normalizzo le maiuscole")
         testo=testo.lower()
@@ -21,7 +16,24 @@ def tokenizer(testo, maiuscole_flag=False):
             print("-"*20+"DEBUG: ho trovato un apostrofo e ho fatto lo split")
             lista.extend(t.split("\'"))
             lista.remove(t)
-    return lista
+    with open("/mnt/c/Users/USER/Desktop/testo_tokenizzato.txt", "w")  as testo_tokenizzato:
+        testo_tokenizzato.write(("\n").join(lista))
+        testo_tokenizzato.close()
+    print(lista)
+    return 
+
+def from_file_to_tokens(path):
+    l= []
+    with open("/mnt/c/Users/USER/Desktop/testo_tokenizzato.txt", "r") as ttk:
+        token = ttk.readline()
+        while token:
+            if(token[-1]=="\n"):
+                # print("-"*20+"DEBUG:l'ultimo carattere dei token è l'accapo, elimino con lo slicing")
+                token=token[0:(len(token)-1)]
+            l.append(token)
+            token = ttk.readline()
+    # print(l)
+    return l
 
 def TTR(tokens):
     print("LUNGHEZZA VOCABOLARIO DELLE PAROLE TIPO: ", len(vocabolario(tokens)))
@@ -33,7 +45,8 @@ def vocabolario(tokens):
     V = {}
     for t in pt:
         #calcola le frequenze assolute
-        V[t]=tokens.count(t)
+        if t not in pt.keys():
+            V[t]=tokens.count(t)    
     return V
 
 def vocabolario_frel(tokens):
@@ -49,7 +62,11 @@ def frequencyClass(vocabulary):
     for fClass in vocabulary.values():
         if fClass not in fC.keys():
             fC[fClass] = [k for k,v in vocabulary.items() if v==fClass]
-    return dict(fC)
+    f=dict(fC)
+    for i,v in f.items():
+        print(f"La classe {i} contiene {len(v)} parole")
+    
+    return f
 
 
 def grafico_spettro_di_frequenza(frequencyClassDic):
@@ -89,25 +106,22 @@ def graficoZipf(V):
     plt.savefig("/mnt/c/Users/USER/Desktop/Zipf.png")
     return rango
 
-# # #scrive un file sul desktop con il testo tokenizzato, prima flag rimuove le maiuscole seconda flag rimuove la punteggiatura
-# # with open("/mnt/c/Users/USER/Desktop/testo_tokenizzato.txt", "w") as testo_tokenizzato:
-# #     # testo_tokenizzato.write(("\n").join(tokenizer("questo è UN TESTO di prova, per vedere! se me lo mette: sul desktop. \n",False,False)))  
-# #     # testo_tokenizzato.write(str(vocabolario(tokenizer("questo è UN TESTO testo di prova, per vedere! se me lo mette: sul desktop. \n",True,False)))) 
-# #     testo_tokenizzato.close()
-
-# print(tokenizer(text))
-# print("IL TTR E': ",TTR(tokenizer(text,True)))
-
 def freq_Cumulata(frequencyClassDic, C):
     s = 0
     lista = []
     frequencyClassDic = dict(OrderedDict(sorted(frequencyClassDic.items())))
     for k in frequencyClassDic:
         s += ((k)*(len(frequencyClassDic[k])))/C
-        lista.append(f"La classe di frequenza {k} contiene {len(frequencyClassDic[k])} parole token, la frequenza cumulata è {round(s,4)}\n") 
+        lista.append(f"La classe di frequenza {k} contiene {len(frequencyClassDic[k])} parole token, la frequenza cumulata è {round(s,4)*100}%\n") 
     return lista
 
-print(graficoZipf(vocabolario(tokenizer(text,True))))
 
-# for i in freq_Cumulata(frequencyClass(vocabolario(tokenizer(text, True))),len(tokenizer(text, True))):
-#     print(i)
+
+# tokenizer_to_text(text,True)
+# grafico_spettro_di_frequenza(frequencyClass(vocabolario(from_file_to_tokens(path))))
+# somma=0
+# for i in vocabolario(from_file_to_tokens(path)).values():
+#     somma+=i
+# print(somma/35)
+# frequencyClass(vocabolario(from_file_to_tokens(path)))
+print(freq_Cumulata(frequencyClass(vocabolario(from_file_to_tokens(path))),len(from_file_to_tokens(path))))

@@ -1,0 +1,12 @@
+Classificazione -> addestrare un classificatore x testp
+dato un testo, dobbiamo predire a quale classe appertiene, tra una serie di classi predefinite
+
+Algoritmo di machine leraning -> funzione abbiettivo
+dataset con testi e classi
+
+Multinomial naive base
+
+
+cross validation -> devo addestrare un modello, ma non ho tanti dati 
+iterativamente 9 parti per addestrarlo e 1 per testarlo su un totale di 10 parti in cui ho diviso il dataset
+prendo i risultati, faccio la media, e ottengo una valutazione complessiva di come funziona il mio modello. 
