@@ -1,5 +1,5 @@
 import sys
-
+import nltk
 
 def main(path1, path2):
     with open(path1, "r") as corpus1:
