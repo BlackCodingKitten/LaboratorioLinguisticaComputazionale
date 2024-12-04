@@ -1,13 +1,16 @@
 import sys
 
 
-def main(argv):
-    #safe exit se non è stato passato nessun file
-    if len(argv)<2:
-        print("Attenzione! Non hai passato nessun file da input.")
-        return
-    
+def main(path1, path2):
+    with open(path1, "r") as corpus1:
+        print(corpus1.readline())
     return
 
 if __name__ == '__main__':
-    main(sys.argv)
+    #safe exit se non sono sono stati passati i due corpus
+    if len(sys.argv)<3:
+        print("Attenzione! Mancanti i corpus in input.")
+    else:
+        main(sys.argv[1],sys.argv[2])
+    
+    
