@@ -34,3 +34,8 @@ def createVocabulary (tokenList):
     for token in set(tokenList):
         V[token] = tokenList.count(token)
     return V
+
+def writeFile(filePath, toWrite): 
+    with open(filePath, "w") as filePtr:
+        filePtr.write(toWrite)
+        filePtr.close()
