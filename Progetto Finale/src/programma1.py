@@ -123,16 +123,34 @@ def writeTokensCharMean(fileName, fileTokenList):
     return f"\n\nMEDIA LUNGHEZZA TOKEN:\nLa lunghezza media in caratteri delle parole token nel file {fileName[0]} e' {round(media[0],3)}.\nLa lunghezza media in caratteri delle parole token nel file {fileName[1]} e' {round(media[1],3)}.\nLa differenza vale {diff} caratteri." 
 
 def writeLemmaCounter(fileName, fileTokenList):
+    """calcola la quantità di lemmi distinti in ciascuno dei corpus e ne riporta anche la differenza
+
+    Args:
+        fileName (string tuple): tupla che contiene i nomi dei file
+        fileTokenList (string list tuple): tupla delle liste di token contenute nei file
+        
+    Returns:
+       string: ritorna quello che va scritto nel file di output
+    """    
     lemmatizer = WordNetLemmatizer()
     lemma_list1 = [lemmatizer.lemmatize(t) for t in fileTokenList[0]]
     lemma_list2 = [lemmatizer.lemmatize(t) for t in fileTokenList[1]]
     
-    diff = len(lemma_list2)-len(lemma_list1)
+    diff = len(set(lemma_list2))-len(set(lemma_list1))
     if diff<0:
         diff *= -1
     return f"\nCOUNTER LEMMI:\nIl file {fileName[0]} contiene {len(lemma_list1)} lemmi.\nIl file {fileName[1]} contiene {len(lemma_list2)} lemmi.\nLa differenza di lemmi tra i due testi equivale a {diff}" 
 
 def writeSentenceMeanLemma(fileName, fileSentenceList):
+    """calcola la media dei lemmi distinti per ogni frase dei due corpus 
+
+    Args:
+        fileName (string tuple): tupla che contiene i nomi dei file
+        fileTokenList (string list tuple): tupla delle liste di token contenute nei file
+        
+    Returns:
+       string: ritorna quello che va scritto nel file di output
+    """    
     lemmatizer = WordNetLemmatizer()
     somma = 0
     for s in fileSentenceList[0]: 
@@ -143,9 +161,19 @@ def writeSentenceMeanLemma(fileName, fileSentenceList):
     for s in fileSentenceList[1]:
         lemmaList = [lemmatizer.lemmatize(t) for t in nltk.tokenize.word_tokenize(s)]
         somma+=len(lemmaList)
-    toReturn+=f"\nNel file {fileName[1]} per ogni frase ci sono in media {round(s/len(fileSentenceList[0]),3)} lemmi distinti."
+    toReturn+=f"\nNel file {fileName[1]} per ogni frase ci sono in media {round(s/len(fileSentenceList[1]),3)} lemmi distinti."
+    return toReturn
 
 def writePOSDistribution(fileName, fileTokenList):
+    """per ogni corpus estrae le Part Of Speech dei primi 1000 token e ne calcola la distrubuzione in percentuale
+    
+    Args:
+        fileName (string tuple): tupla che contiene i nomi dei file
+        fileTokenList (string list tuple): tupla delle liste di token contenute nei file
+
+    Returns:
+       string: ritorna quello che va scritto nel file di output, sottoforma di dataframe pandas
+    """    
     POSDictTuple = {} #Salvo in un unica struttura dati dizionario i POS dei primi 1000 tokens di entrambi i testi
     for token,POS in nltk.tag.pos_tag((fileTokenList[0])[:1000]):
         if POS in POSDictTuple.keys():
