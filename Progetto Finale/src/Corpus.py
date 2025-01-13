@@ -1,18 +1,20 @@
 
 class Corpus:
-    def __init__(self, xfilePath):
+    
+    def __init__(self, filePath):
+         # salvo il path del file 
+        self.text = ""
+        self.tokenList = []
+        self.v = {}
+        self.sentence = []
+        self.lemmaList = []
         # estraggo il nome del file
-        if "/" in xfilePath:
-            fileName = (xfilePath.split("/")[-1])
+        self.filePath = filePath
+        if "/" in filePath:
+            self.fileName = (filePath.split("/")[-1])
         elif "\\" in filePath:
-            fileName = (xfilePath.split("\\")[-1])
-        # salvo il path del file 
-        filePath = xfilePath
-        text = ""
-        tokenList = []
-        vocabulary = {}
-        sentence = []
-        lemmaList = []
+            self.fileName = (filePath.split("\\")[-1])
+       
     
     # Metodi SETTER 
     def setText(self, text):
@@ -24,14 +26,14 @@ class Corpus:
         return True
 
     def setVocabulary(self):
-        if len(self.tokenList == 0):
+        if len(self.tokenList) == 0:
             return False
-        for t in set(self.tokenList):
-            self.setVocabulary[t] = (self.tokenList).count(t)
+        for t in sorted(set((self.tokenList))):
+            self.v[t] = self.tokenList.count(t)
         return True
     
     def setLemmaList(self, lemmaList):
-        self.setLemmaList = lemmaList
+        self.lemmaList = lemmaList
         return True
     
     def setSentenceList(self, lista):
@@ -42,14 +44,14 @@ class Corpus:
     def getTokenList(self):
         return self.tokenList
     
-    def getFileName (self):
+    def getFileName(self):
         return self.fileName
 
     def getText(self):
         return self.text
     
     def getVocabulary(self):
-        return self.vocabulary
+        return self.v
     
     def getLemmaList(self):
         return self.lemmaList
