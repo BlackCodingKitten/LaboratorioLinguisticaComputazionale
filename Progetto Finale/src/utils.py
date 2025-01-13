@@ -1,11 +1,5 @@
 import nltk
 
-def fileName(filePath):
-    if "/" in filePath:
-        return (filePath.split("/")[-1])
-    elif "\\" in filePath:
-        return (filePath.split("\\")[-1])
-
 def readFile(filePath):
     try:
         filePtr = open(filePath, "r")
@@ -27,13 +21,6 @@ def tokenSplitter (text):
     tokenList = nltk.tokenize.word_tokenize(text)
     # ordino alfabeticamente la lista dei tokens
     return sorted(tokenList)
-
-def createVocabulary (tokenList):
-    V = {}
-    tokenList = sorted(tokenList)
-    for token in set(tokenList):
-        V[token] = tokenList.count(token)
-    return V
 
 def writeFile(filePath, toWrite): 
     with open(filePath, "w") as filePtr:
