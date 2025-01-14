@@ -25,12 +25,10 @@ def tokenSplitter (text):
     return sorted(tokenList)
 
 def crateResultsFilePath(filepath = os.getcwd()):
-    if "/" in filepath:
-        return filepath+"/risultatiProgramma1/results.txt"
-    if "\\" in filepath:
-        return filepath+"\\risultatiProgramma1\\results.txt"
+    return filepath+"/results/results1_"
+
 
 def writeFile(filePath, toWrite): 
-    with open(filePath + f"{datetime.date.today()}" , "w") as filePtr:
+    with open(filePath +f"{datetime.date.today()}.txt" , "w") as filePtr:
         filePtr.write(toWrite)
         filePtr.close()

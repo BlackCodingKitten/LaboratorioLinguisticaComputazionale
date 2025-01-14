@@ -10,10 +10,8 @@ class Corpus:
         self.lemmaList = []
         # estraggo il nome del file
         self.filePath = filePath
-        if "/" in filePath:
-            self.fileName = (filePath.split("/")[-1])
-        elif "\\" in filePath:
-            self.fileName = (filePath.split("\\")[-1])
+        self.fileName = (filePath.split("/")[-1])
+        
        
     
     # Metodi SETTER 

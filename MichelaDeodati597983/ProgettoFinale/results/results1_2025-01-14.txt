@@ -1,0 +1,170 @@
+                 ChildrenStories_Corpus.txt  Cryptography_Corpus.txt  Differenza
+Numero di Token                       17737                     6049       11688
+
+
+
+                    ChildrenStories_Corpus.txt  Cryptography_Corpus.txt  Differenza
+Numero Parole Tipo                        2808                     1584        1224
+
+
+
+                 ChildrenStories_Corpus.txt  Cryptography_Corpus.txt  Differenza
+Numero di Frasi                         783                      253         530
+
+
+
+TTR INCREMENTALE A CONFRONTO:
+
+             ChildrenStories_Corpus.txt  Cryptography_Corpus.txt
+200 token                         0.015                    0.040
+400 token                         0.090                    0.030
+600 token                         0.072                    0.052
+800 token                         0.054                    0.146
+1000 token                        0.043                    0.191
+1200 token                        0.036                    0.188
+1400 token                        0.031                    0.203
+1600 token                        0.027                    0.194
+1800 token                        0.024                    0.198
+2000 token                        0.022                    0.214
+2200 token                        0.020                    0.230
+2400 token                        0.020                    0.233
+2600 token                        0.034                    0.251
+2800 token                        0.054                    0.265
+3000 token                        0.051                    0.279
+3200 token                        0.059                    0.281
+3400 token                        0.070                    0.267
+3600 token                        0.076                    0.277
+3800 token                        0.086                    0.280
+4000 token                        0.083                    0.267
+4200 token                        0.079                    0.270
+4400 token                        0.083                    0.274
+4600 token                        0.085                    0.276
+4800 token                        0.081                    0.276
+5000 token                        0.078                    0.284
+5200 token                        0.075                    0.276
+5400 token                        0.077                    0.266
+5600 token                        0.078                    0.261
+5800 token                        0.081                    0.262
+6000 token                        0.086                    0.262
+6200 token                        0.097                    0.262
+6400 token                        0.098                      NaN
+6600 token                        0.106                      NaN
+6800 token                        0.116                      NaN
+7000 token                        0.126                      NaN
+7200 token                        0.129                      NaN
+7400 token                        0.137                      NaN
+7600 token                        0.144                      NaN
+7800 token                        0.146                      NaN
+8000 token                        0.149                      NaN
+8200 token                        0.151                      NaN
+8400 token                        0.151                      NaN
+8600 token                        0.151                      NaN
+8800 token                        0.150                      NaN
+9000 token                        0.148                      NaN
+9200 token                        0.146                      NaN
+9400 token                        0.149                      NaN
+9600 token                        0.149                      NaN
+9800 token                        0.147                      NaN
+10000 token                       0.149                      NaN
+10200 token                       0.152                      NaN
+10400 token                       0.152                      NaN
+10600 token                       0.153                      NaN
+10800 token                       0.155                      NaN
+11000 token                       0.157                      NaN
+11200 token                       0.157                      NaN
+11400 token                       0.155                      NaN
+11600 token                       0.153                      NaN
+11800 token                       0.152                      NaN
+12000 token                       0.152                      NaN
+12200 token                       0.157                      NaN
+12400 token                       0.162                      NaN
+12600 token                       0.167                      NaN
+12800 token                       0.167                      NaN
+13000 token                       0.169                      NaN
+13200 token                       0.167                      NaN
+13400 token                       0.170                      NaN
+13600 token                       0.172                      NaN
+13800 token                       0.177                      NaN
+14000 token                       0.178                      NaN
+14200 token                       0.175                      NaN
+14400 token                       0.173                      NaN
+14600 token                       0.171                      NaN
+14800 token                       0.168                      NaN
+15000 token                       0.166                      NaN
+15200 token                       0.164                      NaN
+15400 token                       0.163                      NaN
+15600 token                       0.163                      NaN
+15800 token                       0.161                      NaN
+16000 token                       0.159                      NaN
+16200 token                       0.160                      NaN
+16400 token                       0.160                      NaN
+16600 token                       0.161                      NaN
+16800 token                       0.160                      NaN
+17000 token                       0.159                      NaN
+17200 token                       0.158                      NaN
+17400 token                       0.158                      NaN
+17600 token                       0.158                      NaN
+17737 token                       0.158                      NaN
+
+
+
+                             ChildrenStories_Corpus.txt  Cryptography_Corpus.txt  Differenza
+Media N caratteri per frase                      97.621                  143.486      45.865
+
+
+
+                             ChildrenStories_Corpus.txt  Cryptography_Corpus.txt  Differenza
+Media N caratteri per token                       3.519                     5.14       1.621
+
+
+
+                     ChildrenStories_Corpus.txt  Cryptography_Corpus.txt
+Numero Lemmi Totali                        2450                     1419
+
+
+
+                       ChildrenStories_Corpus.txt  Cryptography_Corpus.txt  Differenza
+Media Lemmi per frase                       3.129                    5.609        2.48
+
+
+
+DISTRIBUZIONE POS:
+
+     ChildrenStories_Corpus.txt Cryptography_Corpus.txt
+.                          6.2%                   25.3%
+''                        17.8%                    0.3%
+POS                       13.7%                    2.3%
+CD                         0.7%                    3.5%
+NNS                        0.2%                    0.0%
+NNP                        0.2%                   28.4%
+PRP                        0.1%                    1.4%
+MD                         0.8%                    0.0%
+VB                         0.1%                    0.0%
+NN                         0.2%                    0.2%
+VBZ                        0.4%                    0.1%
+WP                         0.3%                    0.0%
+IN                         0.1%                    3.2%
+VBG                        0.2%                    0.1%
+VBP                        0.4%                    0.0%
+(                          0.2%                    2.1%
+)                          0.2%                    2.1%
+,                         58.2%                   24.1%
+:                          0.0%                    0.8%
+JJ                         0.0%                    0.8%
+DT                         0.0%                    3.4%
+RB                         0.0%                    1.3%
+VBD                        0.0%                    0.1%
+CC                         0.0%                    0.1%
+PRP$                       0.0%                    0.3%
+JJS                        0.0%                    0.1%
+
+
+
+                            Negative Distribution %  Positive Distribution %
+ChildrenStories_Corpus.txt                    44.70                    55.30
+Cryptography_Corpus.txt                       57.31                    42.69
+
+
+POLARITA' DEL DOCUMENTO:
+La Polarità del documento ChildrenStories_Corpus.txt e' Positiva.
+La Polarita' del documento Cryptography_Corpus.txt e' Negativa.

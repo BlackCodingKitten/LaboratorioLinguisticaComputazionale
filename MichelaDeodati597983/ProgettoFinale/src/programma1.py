@@ -15,7 +15,6 @@ import os
 # nltk.download('averaged_perceptron_tagger_eng')
 
 # tools per la sentiment analisys
-import sklearn
 from sklearn.model_selection import train_test_split
 from sklearn.datasets import load_files
 from sklearn.feature_extraction.text import TfidfVectorizer
@@ -25,10 +24,19 @@ from sklearn.pipeline import Pipeline
 # per salvare il modello 
 import pickle
 
-def polarityClassification():
-    trainingDir = os.getcwd() + ""
+# per ignorare il warning generato dall'assegnare un nuovo tokenizer al TFidfVectorizer -> "/home/mikela/.local/lib/python3.8/site-packages/sklearn/feature_extraction/text.py:525: UserWarning: The parameter 'token_pattern' will not be used since 'tokenizer' is not None'"
+import warnings
+warnings.filterwarnings(
+    'ignore', 
+    message="The parameter 'token_pattern' will not be used since 'tokenizer' is not None"
+)
+
+def polarityClassificationTrainer():
+    """ Funzione che crea, addestra e salva il modello di sentiment-analisys
+    """    
+    trainingDir = os.getcwd() + "/sentiment-classifier/sentiment_training"
     trainingDataSet = load_files(trainingDir, shuffle=True)
-    x_train, x_test, y_train, y_test = train_test_split(trainingDataSet.data, trainingDataSet.target,test_size = 0.20, random_state = 32)
+    xTrain, xTest, yTrain, yTest = train_test_split(trainingDataSet.data, trainingDataSet.target,test_size = 0.20, random_state = 24)
     
     vectorizer = TfidfVectorizer(tokenizer=nltk.word_tokenize)
     classifier = MultinomialNB()
@@ -38,11 +46,45 @@ def polarityClassification():
         ('multinomialNB', classifier)
     ])
     
-    trained_model = pipeline.fit(x_train,y_train)
+    trained_model = pipeline.fit(xTrain,yTrain)
+    predicted = trained_model.predict(xTest)
+    print(predicted)
+    print(classification_report(yTest, predicted, target_names = trainingDataSet.target_names))
     
-    predicted = trained_model.predict(x_test)
-    print(classification_report(y_test, predicted, target_names = trainingDataSet.target_names))
+    fileptr = open(os.getcwd()+"/sentiment-classifier/sentiment-classifier.pkl", "wb")
+    pickle.dump(pipeline, fileptr)
+    return
+    
+def polaritySentenceClassification(sentenceList):
+    sentimentPipeline = pickle.load(open(os.getcwd()+"/sentiment-classifier/sentiment-classifier.pkl", "rb"))
+    predictions = sentimentPipeline.predict(sentenceList)
+    # print(predictions)
+    neg = 0
+    pos = 0
+    for v in predictions:
+        if v==1:
+            pos+=1
+        else:
+            neg+=1
+            
+    return {"Negative Distribution %": round(100*(neg/len(sentenceList)),2), "Positive Distribution %": round(100*(pos/len(sentenceList)),2)}
 
+def polarityCorpusClassification(sentenceList):
+    sentimentPipeline = pickle.load(open(os.getcwd()+"/sentiment-classifier/sentiment-classifier.pkl", "rb"))
+    predictions = sentimentPipeline.predict(sentenceList)
+    # print(predictions)
+    neg = 0
+    pos = 0
+    for v in predictions:
+        if v==1:
+            pos+=1
+        else:
+            neg-=1
+    if neg+pos >=0:
+        return "Positiva"
+    else:
+        return "Negativa"
+    
 def incrementalTTR (tokens):
     """calcola in maniera incrementale il TTR di un testo saltando di 200 token in 200.
 
@@ -225,15 +267,22 @@ def main(filePath1,filePath2, resultfilePath = utils.crateResultsFilePath()):
     POSTable = POSDistribution(c1.getFileName(),c2.getFileName(), c1.getTokenList(), c2.getTokenList())
     formattedOutput += "DISTRIBUZIONE POS:\n"+POSTable+"\n\n"
     # print(formattedOutput)
-    # polarityClassification()
-    print(os.getcwd())
     
+    # calcolo della polarità per frase con algoritmo di sentiment analisys
+    c1SentencePolarity = polaritySentenceClassification(c1.getSentenceList())
+    c2SentencePolarity = polaritySentenceClassification(c2.getSentenceList())
+    formattedOutput+= createTable([c1SentencePolarity.values(),c2SentencePolarity.values()], c1SentencePolarity.keys(),[c1.getFileName(),c2.getFileName()])
+    # print(formattedOutput)
     
-    # utils.writeFile(resultfilePath, formattedOutput)
-    
+    # calcolo della polarità complessiva del documento, si poteva fare anche confrontando i risultati precedentemente ottenuti
+    c1TextPolarity = polarityCorpusClassification(c1.getSentenceList())
+    c2TextPolarity = polarityCorpusClassification(c2.getSentenceList())
+    formattedOutput += f"\n\nPOLARITA' DEL DOCUMENTO:\nLa Polarità del documento {c1.getFileName()} e' {c1TextPolarity}.\nLa Polarita' del documento {c2.getFileName()} e' {c2TextPolarity}.\n"
+    utils.writeFile(resultfilePath, formattedOutput)
+    return
     
     
 
 
 
-main("/home/mikela/Documents/LaboratorioLinguisticaComputazionale/Progetto Finale/data/ChildrenStories_Corpus.txt","/home/mikela/Documents/LaboratorioLinguisticaComputazionale/Progetto Finale/data/Cryptography_Corpus.txt")
+main("./data/ChildrenStories_Corpus.txt","./data/Cryptography_Corpus.txt")
