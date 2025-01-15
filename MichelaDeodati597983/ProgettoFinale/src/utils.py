@@ -1,6 +1,6 @@
-import nltk  # Libreria per l'elaborazione del linguaggio naturale
-import datetime  # Modulo per gestire date e orari
-import os  # Modulo per operazioni sul file system
+import nltk  
+import datetime  
+import pandas as pd
 
 # Funzione per leggere il contenuto di un file
 def readFile(filePath):
@@ -60,7 +60,7 @@ def tokenSplitter(text):
     # Utilizzo del tokenizer di nltk per dividere il testo in parole
     tokenList = nltk.tokenize.word_tokenize(text)
     # Ordino alfabeticamente la lista dei token
-    return sorted(tokenList)
+    return tokenList
 
 # Funzione per creare il percorso di un file di risultati
 def crateResultsFilePath():
@@ -88,3 +88,17 @@ def writeFile(filePath, toWrite):
     with open(filePath + f"{datetime.date.today()}.txt", "w") as filePtr:
         filePtr.write(toWrite)  # Scrittura del contenuto nel file
         filePtr.close()  # Chiusura del file (opzionale, implicito con 'with')
+
+# funzione che formatta l'output
+def createTable(tValue, dfColumns, dfIndex, indexFlag = True):
+    """funzione che crea un dataframe pandas con i valori passati e li formatta in una stringa
+
+    Args:
+        tValue (list): lista dei valori da inserire nella tabella 
+        dfColumns (list): nome delle colonne da inserire
+        dfIndex (list): indicizzazione per rirga della tabella
+    """    
+     #creo un dataframe in pandas per formattare l'output
+    dataFrame = pd.DataFrame(tValue, columns=dfColumns, index=dfIndex)
+    
+    return "\n"+dataFrame.to_string(index = indexFlag)+"\n"

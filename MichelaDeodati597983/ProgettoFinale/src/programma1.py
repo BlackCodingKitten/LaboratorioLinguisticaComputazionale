@@ -11,7 +11,7 @@ import utils
 
 # nltk.download("wordnet")
 # nltk.download('averaged_perceptron_tagger_eng')
-nltk.download('universal_tagset')
+# nltk.download('universal_tagset')
 
 # tools per la sentiment analisys
 from sklearn.model_selection import train_test_split
@@ -193,7 +193,7 @@ def POSDistribution(fileNameC1,fileNameC2,tokenC1,tokenC2):
         str: dataframe Pandas convertito a stringa che contiene la distribuzione
     """   
     POSDictTuple = {} #Salvo in un unica struttura dati (dizionario) i POS dei primi 1000 tokens di entrambi i testi
-    for token,POS in nltk.tag.pos_tag((tokenC1)[:1000], tagset='universal'):
+    for token,POS in nltk.tag.pos_tag((tokenC1)[:1000]):
         if POS in POSDictTuple.keys():
             #ho già incontrato il tag, incremento il valore corrispondente al file 1
             POSDictTuple[POS]=[((POSDictTuple[POS])[0])+1,0]
@@ -208,20 +208,9 @@ def POSDistribution(fileNameC1,fileNameC2,tokenC1,tokenC2):
         else:
             #non ho mai incontrato il tag, devo quindi generare una cella nuova
             POSDictTuple[POS]= [0, 1]
-    return createTable([[f"{x/10}%",f"{y/10}%"] for [x,y] in POSDictTuple.values()], [fileNameC1,fileNameC2], POSDictTuple.keys())#i valori sono calcolati in percentuale (x/1000)*100-> x/10 -> valore%
+    return utils.createTable([[f"{x/10}%",f"{y/10}%"] for [x,y] in POSDictTuple.values()], [fileNameC1,fileNameC2], POSDictTuple.keys())#i valori sono calcolati in percentuale (x/1000)*100-> x/10 -> valore%
 
-def createTable(tValue, dfColumns, dfIndex, indexFlag = True):
-    """funzione che crea un dataframe pandas con i valori passati e li formatta in una stringa
 
-    Args:
-        tValue (list): lista dei valori da inserire nella tabella 
-        dfColumns (list): nome delle colonne da inserire
-        dfIndex (list): indicizzazione per rirga della tabella
-    """    
-     #creo un dataframe in pandas per formattare l'output
-    dataFrame = pd.DataFrame(tValue, columns=dfColumns, index=dfIndex)
-    
-    return "\n"+dataFrame.to_string(index = indexFlag)+"\n"
 
     
 def main(filePath1,filePath2, resultfilePath = utils.crateResultsFilePath()):
@@ -242,8 +231,8 @@ def main(filePath1,filePath2, resultfilePath = utils.crateResultsFilePath()):
     c2.setSentenceList(utils.sentenceSplitter(c2.getText()))
    
     # divido i file in liste di token e le salvo 
-    c1.setTokenList(utils.tokenSplitter(c1.getText()))
-    c2.setTokenList(utils.tokenSplitter(c2.getText()))
+    c1.setTokenList(sorted(utils.tokenSplitter(c1.getText())))
+    c2.setTokenList(sorted(utils.tokenSplitter(c2.getText())))
     
     # creo i vocabolari con le frequenze assolute delle parole tipo
     if not (c1.setVocabulary() and  c2.setVocabulary()):
@@ -252,15 +241,15 @@ def main(filePath1,filePath2, resultfilePath = utils.crateResultsFilePath()):
     # calcolo la differenza nel numero di token e formatto l'output
     differenzaNumeroToken = lenListDiff((c1.getTokenList(), c2.getTokenList()))
     # scrivo i risultati formattandoli 
-    formattedOutput += createTable([[len(c1.getTokenList()),len(c2.getTokenList()),differenzaNumeroToken]], [c1.getFileName(),c2.getFileName(),"Differenza"],["Numero di Token"])+"\n\n"
+    formattedOutput += utils.createTable([[len(c1.getTokenList()),len(c2.getTokenList()),differenzaNumeroToken]], [c1.getFileName(),c2.getFileName(),"Differenza"],["Numero di Token"])+"\n\n"
     
     # calcolo la differenza nel numero di parole tipo 
     differenzaNumeroType = lenListDiff((c1.getVocabulary().keys(), c2.getVocabulary().keys()))
-    formattedOutput += createTable([[len(c1.getVocabulary().keys()),len(c2.getVocabulary().keys()),differenzaNumeroType]], [c1.getFileName(),c2.getFileName(),"Differenza"],["Numero Parole Tipo"])+"\n\n"
+    formattedOutput += utils.createTable([[len(c1.getVocabulary().keys()),len(c2.getVocabulary().keys()),differenzaNumeroType]], [c1.getFileName(),c2.getFileName(),"Differenza"],["Numero Parole Tipo"])+"\n\n"
     
     # calcolo la differenza nel numero di frasi
     differenzaNumeroFrasi = lenListDiff((c1.getSentenceList(), c2.getSentenceList()))
-    formattedOutput += createTable([[len(c1.getSentenceList()),len(c2.getSentenceList()),differenzaNumeroFrasi]], [c1.getFileName(),c2.getFileName(),"Differenza"],["Numero di Frasi"])+"\n\n"
+    formattedOutput += utils.createTable([[len(c1.getSentenceList()),len(c2.getSentenceList()),differenzaNumeroFrasi]], [c1.getFileName(),c2.getFileName(),"Differenza"],["Numero di Frasi"])+"\n\n"
     
     #TTR incrementali salvati in un dizionario ed associati al nome del file econtrollo se le liste hanno la stessa diemensione e in caso contrario riempo i vuoti
     incrementalTTRc1 = incrementalTTR(c1.getTokenList())
@@ -281,24 +270,24 @@ def main(filePath1,filePath2, resultfilePath = utils.crateResultsFilePath()):
    
     # calcolo la differenza
     differenzaMediaCharFrasi = abs(mediaCharFrasiC2 - mediaCharFrasiC1)
-    formattedOutput += createTable([[mediaCharFrasiC1,mediaCharFrasiC2,differenzaMediaCharFrasi]],[c1.getFileName(),c2.getFileName(),"Differenza"],["Media N caratteri per frase"])+"\n\n"
+    formattedOutput += utils.createTable([[mediaCharFrasiC1,mediaCharFrasiC2,differenzaMediaCharFrasi]],[c1.getFileName(),c2.getFileName(),"Differenza"],["Media N caratteri per frase"])+"\n\n"
     
      # media dei caratteri per token 
     mediaCharTokenC1 = charMean(c1.getTokenList())
     mediaCharTokenC2 = charMean(c2.getTokenList())
     # calcolo della differenza 
     differenzaMediaCharToken = abs(mediaCharTokenC2-mediaCharTokenC1)
-    formattedOutput += createTable([[mediaCharTokenC1,mediaCharTokenC2,differenzaMediaCharToken]],[c1.getFileName(),c2.getFileName(),"Differenza"],["Media N caratteri per token"])+"\n\n"    
+    formattedOutput += utils.createTable([[mediaCharTokenC1,mediaCharTokenC2,differenzaMediaCharToken]],[c1.getFileName(),c2.getFileName(),"Differenza"],["Media N caratteri per token"])+"\n\n"    
     
     #Calcolo numero dei lemmi distinti salvati in ordine alfabetico in un dizionario ed associati al nome del file
     c1.setLemmaList(lemmatizer(c1.getTokenList()))
     c2.setLemmaList(lemmatizer(c2.getTokenList()))
-    formattedOutput += createTable([[len(c1.getLemmaList()),len(c2.getLemmaList())]], [c1.getFileName(),c2.getFileName()], ["Numero Lemmi Totali"])
+    formattedOutput += utils.createTable([[len(c1.getLemmaList()),len(c2.getLemmaList())]], [c1.getFileName(),c2.getFileName()], ["Numero Lemmi Totali"])
     
     # calcolo la media dei lemmi per frase arrotondata a 3 cifre decimali
     mediaLemmiFrasiC1 = round(len(c1.getLemmaList())/len(c1.getSentenceList()),3)
     mediaLemmiFrasiC2 = round(len(c2.getLemmaList())/len(c2.getSentenceList()),3)
-    formattedOutput += createTable([[mediaLemmiFrasiC1,mediaLemmiFrasiC2,abs(mediaLemmiFrasiC2-mediaLemmiFrasiC1)]], [c1.getFileName(),c2.getFileName(), "Differenza"], ["Media Lemmi per frase"])+"\n\n"
+    formattedOutput += utils.createTable([[mediaLemmiFrasiC1,mediaLemmiFrasiC2,abs(mediaLemmiFrasiC2-mediaLemmiFrasiC1)]], [c1.getFileName(),c2.getFileName(), "Differenza"], ["Media Lemmi per frase"])+"\n\n"
     
     # creazione della tabella che rappresenta la distribuzione POS nei primi 1000 tokens
     POSTable = POSDistribution(c1.getFileName(),c2.getFileName(), c1.getTokenList(), c2.getTokenList())
@@ -308,7 +297,7 @@ def main(filePath1,filePath2, resultfilePath = utils.crateResultsFilePath()):
     # calcolo della polarità per frase con algoritmo di sentiment analisys
     c1SentencePolarity = polaritySentenceClassification(c1.getSentenceList())
     c2SentencePolarity = polaritySentenceClassification(c2.getSentenceList())
-    formattedOutput+= createTable([c1SentencePolarity.values(),c2SentencePolarity.values()], c1SentencePolarity.keys(),[c1.getFileName(),c2.getFileName()])
+    formattedOutput+= utils.createTable([c1SentencePolarity.values(),c2SentencePolarity.values()], c1SentencePolarity.keys(),[c1.getFileName(),c2.getFileName()])
     # print(formattedOutput)
     
     # calcolo della polarità complessiva del documento, si poteva fare anche confrontando i risultati precedentemente ottenuti
