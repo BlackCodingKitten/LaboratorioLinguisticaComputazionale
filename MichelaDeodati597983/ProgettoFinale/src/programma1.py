@@ -319,7 +319,7 @@ def main(filePath1,filePath2, resultfilePath = utils.crateResultsFilePath()):
     return
     
 if __name__ == '__main__':
-    #safe exit se non è stato passato nessun file
+    #safe exit se sono stati passati meno di due file
     if len(sys.argv)<3:
         print("Attenzione! Non hai passato nessun file da input.")
     else:
