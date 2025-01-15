@@ -1,18 +1,17 @@
 """Programma 1"""
 
-
+import sys
 import nltk
 from nltk.stem import WordNetLemmatizer
-import sys
-import utils
 import re
 import pandas as pd
-import Corpus
 import numpy as np
-import os
+import Corpus
+import utils
 
 # nltk.download("wordnet")
 # nltk.download('averaged_perceptron_tagger_eng')
+nltk.download('universal_tagset')
 
 # tools per la sentiment analisys
 from sklearn.model_selection import train_test_split
@@ -21,6 +20,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.metrics import accuracy_score, classification_report
 from sklearn.pipeline import Pipeline
+
 # per salvare il modello 
 import pickle
 
@@ -32,45 +32,81 @@ warnings.filterwarnings(
 )
 
 def polarityClassificationTrainer():
-    """ Funzione che crea, addestra e salva il modello di sentiment-analisys
-    """    
-    trainingDir = os.getcwd() + "/sentiment-classifier/sentiment_training"
+    """Funzione che crea, addestra e salva un modello di sentiment analysis.
+    Il modello viene creato utilizzando un pipeline composta da un vettorizzatore TF-IDF
+    e un classificatore Naive Bayes multinomiale. Dopo l'addestramento, il modello viene 
+    salvato su file per poter essere riutilizzato senza doverlo ricreare da zero.
+    """
+    # Definisco il percorso della directory contenente il dataset di training    
+    trainingDir = "./sentiment-classifier/sentiment_training"
+     # Carico il dataset di training dalla directory, con shuffle per mescolare i dati
     trainingDataSet = load_files(trainingDir, shuffle=True)
+    # Divido il dataset in training set (80%) e test set (20%)
     xTrain, xTest, yTrain, yTest = train_test_split(trainingDataSet.data, trainingDataSet.target,test_size = 0.20, random_state = 24)
     
+    # Inizializzo un vettorizzatore TF-IDF 
     vectorizer = TfidfVectorizer(tokenizer=nltk.word_tokenize)
+     # Inizializzo un classificatore Naive Bayes multinomiale
     classifier = MultinomialNB()
-    
+     # Creo una pipeline che combina il vettorizzatore TF-IDF con il classificatore Naive Bayes
     pipeline = Pipeline([
         ('tfidf-vectorizer', vectorizer),
         ('multinomialNB', classifier)
     ])
-    
+    # Addestro il modello utilizzando il training set
     trained_model = pipeline.fit(xTrain,yTrain)
+    
+    # Utilizzo il modello addestrato per fare previsioni sul test set
     predicted = trained_model.predict(xTest)
+    # Stampo le previsioni e il report di classificazione
     print(predicted)
     print(classification_report(yTest, predicted, target_names = trainingDataSet.target_names))
     
-    fileptr = open(os.getcwd()+"/sentiment-classifier/sentiment-classifier.pkl", "wb")
+    # Salvo il modello addestrato in un file .pkl per un uso futuro
+    fileptr = open("./sentiment-classifier/sentiment-classifier.pkl", "wb")
     pickle.dump(pipeline, fileptr)
     return
     
 def polaritySentenceClassification(sentenceList):
-    sentimentPipeline = pickle.load(open(os.getcwd()+"/sentiment-classifier/sentiment-classifier.pkl", "rb"))
+    """
+    Funzione che analizza una lista di frasi per determinare la distribuzione delle polarità 
+    (positiva e negativa) utilizzando un modello di sentiment analysis precedentemente addestrato.
+    
+    Args:
+        sentenceList (list): Lista di frasi da analizzare.
+
+    Returns:
+        dict: Dizionario contenente la distribuzione percentuale di sentiment negativo e positivo.
+    """
+     # Carico il modello di sentiment analysis precedentemente salvato
+    sentimentPipeline = pickle.load(open("./sentiment-classifier/sentiment-classifier.pkl", "rb"))
+     # Utilizzo il modello per prevedere le polarità delle frasi nella lista
     predictions = sentimentPipeline.predict(sentenceList)
-    # print(predictions)
-    neg = 0
-    pos = 0
-    for v in predictions:
-        if v==1:
+    # Inizializzo i contatori per frasi negative e positive
+    neg = 0     #contatore per i negativi
+    pos = 0     #contatore per i positivi
+    # Itero sulle predizioni per calcolare il numero di frasi positive e negative
+    for predictionValue in predictions:
+        if predictionValue==1: # Se la previsione è 1, la frase è positiva
             pos+=1
-        else:
+        else:  # Altrimenti, la frase è negativa
             neg+=1
-            
+    # Calcolo le distribuzioni percentuali di sentiment negativo e positivo
     return {"Negative Distribution %": round(100*(neg/len(sentenceList)),2), "Positive Distribution %": round(100*(pos/len(sentenceList)),2)}
 
 def polarityCorpusClassification(sentenceList):
-    sentimentPipeline = pickle.load(open(os.getcwd()+"/sentiment-classifier/sentiment-classifier.pkl", "rb"))
+    """
+    Funzione che analizza un corpus di frasi per determinare la polarità complessiva
+    (positiva o negativa) basandosi sulle previsioni di un modello di sentiment analysis.
+    
+    Args:
+        sentenceList (list): Lista di frasi da analizzare.
+
+    Returns:
+        str: Una stringa che indica la polarità complessiva del corpus:
+             "Positiva" o "Negativa".
+    """
+    sentimentPipeline = pickle.load(open("./sentiment-classifier/sentiment-classifier.pkl", "rb"))
     predictions = sentimentPipeline.predict(sentenceList)
     # print(predictions)
     neg = 0
@@ -80,10 +116,13 @@ def polarityCorpusClassification(sentenceList):
             pos+=1
         else:
             neg-=1
-    if neg+pos >=0:
+    # Determino la polarità complessiva in base al bilancio calcolato
+    if neg+pos >0:
         return "Positiva"
-    else:
+    elif neg+pos<0:
         return "Negativa"
+    else:
+        return "Neutro"
     
 def incrementalTTR (tokens):
     """calcola in maniera incrementale il TTR di un testo saltando di 200 token in 200.
@@ -94,13 +133,11 @@ def incrementalTTR (tokens):
        (str,float) list: ritorna la lista dei valori dei TTR associati alla relativa porzione
     """    
     TTR = []
-    index = 1 #tengo traccia di quante volte salto di 200 token per verificare alla fine se ho incluso tutti i token
-    for i in range(200,len(tokens),200):
-        TTR.append(round(len(set(tokens[:i]))/i,3))
-        index+=1
-    # Ultima sezione della lista se non viene presa dallo slicing
-    if((len(tokens)%200) != 0):
-        TTR.append(round(len(set(tokens))/len(tokens),3))
+    for i in range(200, len(tokens) + 1, 200):  # Include anche l'ultimo gruppo completo
+        TTR.append(round(len(set(tokens[:i])) / i, 3))
+    # Controlla se rimangono token non inclusi in un blocco di 200
+    if len(tokens) % 200 != 0:
+        TTR.append(round(len(set(tokens)) / len(tokens), 3))
     return TTR  
     
 def lenListDiff(llist):
@@ -156,7 +193,7 @@ def POSDistribution(fileNameC1,fileNameC2,tokenC1,tokenC2):
         str: dataframe Pandas convertito a stringa che contiene la distribuzione
     """   
     POSDictTuple = {} #Salvo in un unica struttura dati (dizionario) i POS dei primi 1000 tokens di entrambi i testi
-    for token,POS in nltk.tag.pos_tag((tokenC1)[:1000]):
+    for token,POS in nltk.tag.pos_tag((tokenC1)[:1000], tagset='universal'):
         if POS in POSDictTuple.keys():
             #ho già incontrato il tag, incremento il valore corrispondente al file 1
             POSDictTuple[POS]=[((POSDictTuple[POS])[0])+1,0]
@@ -281,8 +318,9 @@ def main(filePath1,filePath2, resultfilePath = utils.crateResultsFilePath()):
     utils.writeFile(resultfilePath, formattedOutput)
     return
     
-    
-
-
-
-main("./data/ChildrenStories_Corpus.txt","./data/Cryptography_Corpus.txt")
+if __name__ == '__main__':
+    #safe exit se non è stato passato nessun file
+    if len(sys.argv)<3:
+        print("Attenzione! Non hai passato nessun file da input.")
+    else:
+        main(sys.argv[1],sys.argv[2])
