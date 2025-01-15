@@ -193,7 +193,7 @@ def POSDistribution(fileNameC1,fileNameC2,tokenC1,tokenC2):
         str: dataframe Pandas convertito a stringa che contiene la distribuzione
     """   
     POSDictTuple = {} #Salvo in un unica struttura dati (dizionario) i POS dei primi 1000 tokens di entrambi i testi
-    for token,POS in nltk.tag.pos_tag((tokenC1)[:1000]):
+    for token,POS in nltk.tag.pos_tag((tokenC1)[:1000], tagset='universal'):
         if POS in POSDictTuple.keys():
             #ho già incontrato il tag, incremento il valore corrispondente al file 1
             POSDictTuple[POS]=[((POSDictTuple[POS])[0])+1,0]
@@ -201,7 +201,7 @@ def POSDistribution(fileNameC1,fileNameC2,tokenC1,tokenC2):
             #non ho mai incontrato il tag in quastione, aggiungo la cella corrispondente
             POSDictTuple[POS]= [1,0]
             
-    for token,POS in nltk.tag.pos_tag((tokenC2)[:1000]):
+    for token,POS in nltk.tag.pos_tag((tokenC2)[:1000], tagset='universal'):
         if POS in POSDictTuple.keys():
             #ho già il tag salvato nel dizionario, posso averlo già visto nel file precedente o averlo già incontrato in questo, riporto i valori precedenti ed incremento il contatore relativo al secondo file 
             POSDictTuple[POS] =[((POSDictTuple[POS])[0]),((POSDictTuple[POS])[1])+1]
