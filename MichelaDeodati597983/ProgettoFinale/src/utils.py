@@ -89,6 +89,44 @@ def writeFile(filePath, toWrite):
         filePtr.write(toWrite)  # Scrittura del contenuto nel file
         filePtr.close()  # Chiusura del file (opzionale, implicito con 'with')
 
+def tupleListToString(lista):
+    """
+    Converte una lista di tuple in una lista di stringhe formattate come tuple.
+
+    Ogni elemento della lista di input è una tupla. La funzione crea una rappresentazione
+    in formato stringa di ciascuna tupla e restituisce una nuova lista contenente queste stringhe.
+
+    Args:
+        lista (list): Una lista di tuple. Ogni tupla può contenere uno o più elementi.
+
+    Returns:
+        list: Una lista di stringhe, dove ogni stringa rappresenta una tupla formattata
+              con elementi separati da virgole e racchiusi tra parentesi tonde.
+    """
+    # Inizializza una lista vuota che conterrà le stringhe da restituire
+    toReturn = []
+    
+    # Itera su ogni elemento della lista (ciascuno deve essere una tupla)
+    for e in lista:
+        # Inizia la rappresentazione stringa con il primo elemento della tupla
+        s = f"({e[0]}"
+        
+        # Itera sugli elementi successivi della tupla (dal secondo in poi)
+        for i in range(1, len(e)):
+            # Aggiunge ogni elemento alla stringa, preceduto da una virgola e uno spazio
+            s += f", {e[i]}"
+        
+        # Chiude la rappresentazione della tupla con una parentesi tonda
+        s += ")"
+        
+        # Aggiunge la stringa completa alla lista di output
+        toReturn.append(s)
+    
+    # Restituisce la lista di stringhe formattate
+    return toReturn
+
+
+
 # funzione che formatta l'output
 def createTable(tValue, dfColumns, dfIndex, indexFlag = True):
     """funzione che crea un dataframe pandas con i valori passati e li formatta in una stringa
