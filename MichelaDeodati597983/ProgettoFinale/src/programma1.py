@@ -230,7 +230,7 @@ def main(filePath1,filePath2, resultfilePath = utils.crateResultsFilePath()):
     c1.setSentenceList(utils.sentenceSplitter(c1.getText()))
     c2.setSentenceList(utils.sentenceSplitter(c2.getText()))
    
-    # divido i file in liste di token e le salvo 
+    # divido i file in liste di token e le salvo (ordinate alfabeticamente)
     c1.setTokenList(sorted(utils.tokenSplitter(c1.getText())))
     c2.setTokenList(sorted(utils.tokenSplitter(c2.getText())))
     

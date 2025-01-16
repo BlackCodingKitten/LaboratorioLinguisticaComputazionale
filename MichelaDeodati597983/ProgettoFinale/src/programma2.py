@@ -36,36 +36,31 @@ def POSTagging(token):
     # Popola il dizionario raggruppato per tag POS
     for (x, y), count in freq.items():
         result_dict[y].append((x, count))
-    # Ordina le liste per ogni tag POS in base alla frequenza, in ordine decrescente
+    # Ordina le liste per ogni tag POS in base alla frequenza, in ordine decrescente in modo da averli già ordinati per quando li necessito dopo
     for y in result_dict:
         result_dict[y] = sorted(result_dict[y], key=lambda t: t[1], reverse=True)
     # Restituisce il dizionario ordinato
     return result_dict
 
-def getPOS(posDict, key):
-    """
-    Restituisce  elementi della lista associata a una chiave in un dizionario.
-
-    Args:
-        posDict (dict): Dizionario che associa chiavi a liste di coppie (token, frequenza).
-                        Ogni lista è composta da tuple, dove il primo elemento rappresenta il token
-                        e il secondo la sua frequenza.
-        key (string): La chiave utilizzata per accedere alla lista all'interno del dizionario.
-
-    Returns:
-        dict: Un dizionario contenente elementi della lista, trasformati in chiavi
-              e valori.
-
-    Raises:
-        TypeError: Se il valore associato alla chiave non è una lista o se gli elementi della lista
-                   non sono coppie valide per la conversione in dizionario.
-        KeyError: Se la chiave non esiste in `posDict`.
-    """
-
-    # Recupera la lista di frequenze associata alla chiave 'key' nel dizionario 'posDict'.
-    tokenFrequencyList = posDict.get(key)
+def ngramsPOSTagging(tokens,ngramsDim):
+    #mi creo il pos tagging dei token
+    posList = nltk.tag.pos_tag(tokens, tagset='universal')
+    #raggruppo le tuple in ngrammi di dimensione passata
+    ngramsTokenPOS = list(nltk.ngrams(posList, ngramsDim))
+    #estraggo la lista di ngrammi di soli POS tag:
+    ngramsPOSList = []
+    for elem in ngramsTokenPOS:
+        # elem è la tupla che contiene le tupla (token,TAG)
+        tagList = []
+        for x in elem:
+            # mi creo la lista di tutti i tag, ordinati per comparsa
+            tagList.append(x[1])
+            
+        #converto la lista appena generata in una tupla e la inserisco nella lista degli ngrammi di soli tag
+        ngramsPOSList.append(tuple(tagList))
+    return getTop20Ngrams(ngramsPOSList)
+            
     
-    return tokenFrequencyList
 
 def getTop20Ngrams(lista):
     """conta la frequenza degli ngrammi contenuti nella lista
@@ -76,6 +71,8 @@ def getTop20Ngrams(lista):
     Returns:
         dict: dizionario dei primi 20 ngrammi ordinato per frequenza discendente 
     """
+    #Counter lista genrale la lista di tuple che ha come primo elemnto l'elemento della lista e come secondo il suo counter, l'ordinamento 
+    # viene fatto con la funzione sorted sulla base del secondo valore x: x[1], e il reverse=True è per avere l'ordinamento decrescente
     return dict(sorted(dict(Counter(lista)).items(), key=lambda x: x[1], reverse=True)[:20])
     
 def stopwordsDistribution(token):
@@ -86,60 +83,71 @@ def stopwordsDistribution(token):
 
     Returns:
         float: ditribuzione delle stopwords, arrotondata alla terza cifra decimale
-    """    
+    """   
+    #Normalizza le maiuscole 
     tokens = [t.lower() for t in token]
-    somma=0 # contatore delle stopwords
+    count=0 # contatore delle stopwords
+    # ciclo for per contare le stopwords presenti nel testo
     for sw in stopwords.words('english'):
-        somma+= tokens.count(sw)
-    return round(somma/len(tokens), 3)
+        count+= tokens.count(sw)
+    # ritorno la distribuzione di frequenza
+    return round(count/len(tokens), 3)
     
 
 def main(filePath):
     #inzializzazione dell'istanza per il corpus
     corpus=Corpus(filePath)
+    #leggo il file
     corpus.setText(utils.readFile(filePath))
+    #creo la lista di token (non ordinata)
     corpus.setTokenList(utils.tokenSplitter(corpus.getText()))
+    #creo la lista di frasi
     corpus.setSentenceList(utils.sentenceSplitter(corpus.getText()))
+    #creo il vocabolario delle parole tipo
     corpus.setVocabulary()
-    
+    #inizializzo la stringa che verrà poi scritta nell'output e conterrà il file formattato
     formattedOutput = ''
     
-    #Creazione del dizionario che ha come chiave i tag e come valori le liste di tuple contenenti come primo elemento i token associati a quel tag e come secondo elemento la frequenza
+    #Creazione del dizionario che ha come chiave i tag (tagset='universal') e come valori le liste di tuple contenenti come primo elemento i token associati a quel tag e come secondo elemento la frequenza
     POSDict = dict(POSTagging(corpus.getTokenList()))
-    #ADJ-> agg  NOUN->sostantivi  #ADV->AVVERB
+    #i tag da ricercare sono: ADJ-> aggettivi  NOUN->sostantivi  #ADV->avverbi
     # estraggo i primi 50 aggettivi più frequenti dal dizionario
-    top50ADJDict= dict(getPOS(POSDict, "ADJ")[:50])
+    top50ADJDict= dict(POSDict.get("ADJ")[:50])
     # estraggo i primi 50 nomi più frequenti dal dizionario
-    top50NOUNDict= dict(getPOS(POSDict, "NOUN")[:50])
+    top50NOUNDict= dict(POSDict.get("NOUN")[:50])
     # estraggo i primi 50 avverbi più frequenti dal dizionario
-    top50ADVDict= dict(getPOS(POSDict, "ADV")[:50])
+    top50ADVDict= dict(POSDict.get("ADV")[:50])
     #formatto l'output
     formattedOutput += f"\nTOP 50 AGGETTIVI PRESENTI NEL FILE {corpus.getFileName()}" + utils.createTable(top50ADJDict.values(), ['Frequenza'], top50ADJDict.keys())+"\n"
     formattedOutput += f"\nTOP 50 SOSTANTIVI PRESENTI NEL FILE {corpus.getFileName()}" + utils.createTable(top50NOUNDict.values(), ['Frequenza'], top50NOUNDict.keys())+"\n"
     formattedOutput += f"\nTOP 50 AVVERBI PRESENTI NEL FILE {corpus.getFileName()}" + utils.createTable(top50ADVDict.values(), ['Frequenza'], top50ADVDict.keys())+"\n"
     
-    # creo la lista di tutti i monogrammi
-    monograms = list(nltk.ngrams(corpus.getTokenList(),1))
-    # creo la lista di tutti i bigrammi
-    bigrams = list(nltk.ngrams(corpus.getTokenList(),2))
-    # creo la lista di tutti i trigrammi
-    trigrams = list(nltk.ngrams(corpus.getTokenList(),3))
+    # creo la lista di tutti gli ngrammi [lista_monogrammi,lista_bigrammi,lista_trigrammi]:
+    ngramsLList = [list(nltk.ngrams(corpus.getTokenList(),1)),list(nltk.ngrams(corpus.getTokenList(),2)),list(nltk.ngrams(corpus.getTokenList(),3))]
     # Prendo i primi 20 ordinati per frequenza
-    top20Monograms = getTop20Ngrams(monograms)
-    top20Bigrams = getTop20Ngrams(bigrams)
-    top20Trigrams = getTop20Ngrams(trigrams)
+    top20Monograms = getTop20Ngrams(ngramsLList[0])
+    top20Bigrams = getTop20Ngrams(ngramsLList[1])
+    top20Trigrams = getTop20Ngrams(ngramsLList[2])
     # formatto loutput
     formattedOutput += f"\nTOP 20 MONOGRAMMI PRESENTI NEL FILE {corpus.getFileName()}:\n"+ utils.createTable(top20Monograms.values(), ['Frequenza'], top20Monograms.keys())+"\n"
     formattedOutput += f"\nTOP 20 BIGRAMMI PRESENTI NEL FILE {corpus.getFileName()}:\n"+ utils.createTable(top20Bigrams.values(), ['Frequenza'], top20Bigrams.keys())+"\n"
-    formattedOutput += f"\nTOP 20 MONOGRAMMI PRESENTI NEL FILE {corpus.getFileName()}:\n"+ utils.createTable(top20Trigrams.values(), ['Frequenza'], top20Trigrams.keys())+"\n"
+    formattedOutput += f"\nTOP 20 TRIGRAMMI PRESENTI NEL FILE {corpus.getFileName()}:\n"+ utils.createTable(top20Trigrams.values(), ['Frequenza'], top20Trigrams.keys())+"\n"
     # Calcolo distribuzione delle stopwords sul testo e formattazione nel file di output
     formattedOutput += f"\n\nLa percentuale di Stopwords presenti nel testo {corpus.getFileName()} e' {stopwordsDistribution(corpus.getTokenList()) * 100}%\n"
     
     # calcolo distribuzione dei pronomi e media per frase #PRON -> pronomi 
-    totalePronomi = sum([x for y,x in getPOS(POSDict,"PRON")])
+    totalePronomi = sum([x for y,x in POSDict.get('PRON')])
     # formatto l'output inserendo il rapporto tra il numero di pronomi e il totlae dei token ricavato grazie alla lista non ordinata di token contenuta nell'istanza "corpus"
     # Calcolo anche la media di pronomi per frasi grazie alla lista non ordinata di frasi contenuta nell'istanza "corpus"
-    formattedOutput +=f"\nNel corpus {corpus.getFileName()} ci sono {totalePronomi}, in rapporto al totale dei token equivale al {round((totalePronomi/len(corpus.getTokenList()))*100,3)}%, per ogni frase ci sono circa {round(totalePronomi/len(corpus.getSentenceList()),3)} pronomi.\n\n"
+    formattedOutput +=f"\nNel corpus {corpus.getFileName()} ci sono {totalePronomi} pronimi in totale, in rapporto al totale dei token equivale al {round((totalePronomi/len(corpus.getTokenList()))*100,3)}%, per ogni frase ci sono in media, circa, {round(totalePronomi/len(corpus.getSentenceList()),3)} pronomi.\n\n"
+    
+    #creo la lista contenente gli ngrammi di tag con relativa frequenza abbinata di dimensione 1,2,3,4,5
+    ngramsTagLList = [ngramsPOSTagging(corpus.getTokenList(),1),ngramsPOSTagging(corpus.getTokenList(),2),ngramsPOSTagging(corpus.getTokenList(),3),ngramsPOSTagging(corpus.getTokenList(),4),ngramsPOSTagging(corpus.getTokenList(),5)]
+    # formatto l'output
+    for index in range(5):
+        formattedOutput += f"\n\nTOP 20 {index+1}-GRAMMI PRESENTI NEL FILE {corpus.getFileName()}:\n"+utils.createTable(ngramsTagLList[index].values(),['Frequenza'],ngramsTagLList[index].keys())+"\n"
+   
+    
     print(formattedOutput)
     return
 
