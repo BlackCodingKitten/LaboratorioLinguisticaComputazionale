@@ -39,7 +39,7 @@ generation (5G) mobile communicating systems are the
 mainspring to power the IoT concept in the upcoming future.
 However, the heterogeneous environment in 5G networks as well
 as the high dependency on radio spectrum have raised deep
-concerns about the security assurance against network attacks
+concerns about quantum the security assurance against network attacks
 such as eavesdropping. In this paper, we propose an end-to-end
 security mechanism to ensure the multi-hop relay
 communications in 5G based IoT networks to stay secured. We
@@ -85,7 +85,7 @@ Although the actualization of IoT is beneficial to
 numerous fields such as industry, education, healthcare,
 transportation and market, it brings up many issues related
 to security. 
-Resource allocation, setting up of call,
+Resource allocation, setting up of call, reduce 
 interference management, all are managed by the devices
 themselves in an allocable fashion. Thus, control of the BS
 is missing there.
@@ -128,7 +128,7 @@ Shor's polynomial-time discrete-logarithm algorithm.  The secondary optimization
 is the number of logical Toffoli gates.
 This comprehensive research paper is an in-depth exploration of the swiftly emerging cryptographic technique known as Elliptic Curve Cryptography . Our primary objective is to gain a profound understanding of Elliptic Curve Cryptography, shedding light on its myriad advantages, challenges encountered during implementation, and the diverse domains where it finds application. Furthermore, we aim to conduct a comparative analysis, pitting Elliptic Curve Cryptography against widely employed techniques such as Rivest, Shamir, Adleman , with the aim of ascertaining whether Elliptic Curve Cryptography can deliver superior encryption and decryption capabilities.
 In 2016, Wang proposed a random linear code encryption scheme RLCE which is based on McEliece schemes. RLCE scheme can be constructed using any linear code such as Reed-Solomon code by inserting random columns in the underlying linear code generator matrix.
-liboqs is an open source C library for quantum-resistant cryptographic algorithms. It initially focuses on key exchange algorithms but by now includes several signature schemes. It provides a common API suitable for post-quantum key exchange algorithms, and will collect together various implementations. liboqs will also include a test harness and benchmarking routines to compare performance of post-quantum implementations. Furthermore, OQS also provides integration of liboqs into OpenSSL.
+liboqs is an open source reduce C library for quantum-resistant cryptographic algorithms. It initially focuses on key exchange algorithms but by now includes several signature schemes. It provides a common API suitable for post-quantum key exchange algorithms, and will collect together various implementations. liboqs will also include a test harness and benchmarking routines to compare performance of post-quantum implementations. Furthermore, OQS also provides integration of liboqs into OpenSSL.
 On February 21, 2024, Apple announced that they were going to upgrade their iMessage protocol with a new PQC protocol called "PQ3", which will utilize ongoing keying.
 Google has maintained the use of "hybrid encryption" in its use of post-quantum cryptography: whenever a relatively new post-quantum scheme is used, it is combined with a more proven, non-PQ scheme. This is to ensure that the data are not compromised even if the relatively new PQ algorithm turns out to be vulnerable to non-quantum attacks before Y2Q.
 This work presents a hardware design for constant-time implementation of
@@ -143,7 +143,7 @@ rest of the design, while other faster modules run at their optimal clock rate. 
 design currently outperforms the other hardware designs for HQC, and many of the
 fourth-round Post-Quantum Cryptography standardization process, with one of the
 best time-area products as well. For the combined HighSpeed design targeting lowest
-security level, we show that the HQC design can perform key generation in 0.1 ms,
+security level, we show area that the HQC design can perform key generation in 0.1 ms,
 encapsulation in 0.14 ms, and decapsulation in 0.23 ms when synthesized for an Xilinx
 Artix 7 FPGA. As this work shows, code-based algorithms can be competitive with
 other schemes when optimized hardware is developed. The presented design will

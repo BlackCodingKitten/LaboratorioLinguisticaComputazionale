@@ -89,6 +89,7 @@ def writeFile(filePath, toWrite):
         filePtr.write(toWrite)  # Scrittura del contenuto nel file
         filePtr.close()  # Chiusura del file (opzionale, implicito con 'with')
 
+# Funzione che converte una lista di tuple in una lista di stringhe
 def tupleListToString(lista):
     """
     Converte una lista di tuple in una lista di stringhe formattate come tuple.
@@ -124,8 +125,6 @@ def tupleListToString(lista):
     
     # Restituisce la lista di stringhe formattate
     return toReturn
-
-
 
 # funzione che formatta l'output
 def createTable(tValue, dfColumns, dfIndex, indexFlag = True):
