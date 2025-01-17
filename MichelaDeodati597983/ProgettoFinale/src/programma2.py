@@ -10,7 +10,8 @@ import numpy as np
 from collections import Counter, defaultdict
 from nltk.corpus import stopwords 
 from MarkovModel2 import MarkovModel2 as MKmodel
- 
+# nltk.download('maxent_ne_chunker_tab')
+# nltk.download('words')
 # nltk.download('stopwords')
 
 
@@ -174,7 +175,31 @@ def getHighestProbableSentence(tokens, sentences):
     sentenceProbDict = dict([(s,modello.getProbability(s)) for s in sentences])
     return(sorted(sentenceProbDict.items())[0])
         
-    
+def getNE(tokens):
+    tokenPOSList =  list(nltk.pos_tag(tokens))
+    NE_tree = nltk.ne_chunk(tokenPOSList)
+    NE = []
+    for node in NE_tree:
+        if hasattr(node, 'label'):
+            NE.append((node.label()," ".join([t for t, POS in node.leaves()])))
+    NEDict = {}
+    for index in range(len(NE)):
+        (tag, token) = NE[index]
+        if NEDict.get(tag) != None:
+            if NEDict[tag].get(token) != None:
+                NEDict[tag][token] += 1
+            else:
+                NEDict[tag][token] = 1
+        else:
+            NEDict[tag] = {token: 1}
+            
+    for key,value in NEDict.items():
+        # prendo i primi 15 elementi dopo avelo ordianato
+        NEDict[key] = dict(sorted(value.items(), key=lambda item: item[1], reverse=True)[:15])
+    return(NEDict)
+        
+            
+        
 
 def main(filePath):
     #inzializzazione dell'istanza per il corpus
@@ -276,6 +301,9 @@ def main(filePath):
     
     highestProbableSentence = getHighestProbableSentence(corpus.getTokenList(),corpus.getSentenceList())
     formattedOutput += f"\nLa frase a cui il Modello di Markov di ordine 2 costruito sul corpus {corpus.getFileName()} assegna probabilita' maggiore e' {highestProbableSentence[0]}, con P={highestProbableSentence[1]}.\n\n"
+    NE = getNE(corpus.getTokenList())
+    for key in NE.keys():
+        formattedOutput+= f"\n\nTOP 15 TOKEN DELLA CLASSE NE-{key} ORDINATI PER FREQUENZA DECRESCENTE:"+ utils.createTable(NE[key].values(), ['Frequenza'], NE[key].keys())
     print(formattedOutput)
     return
 
