@@ -284,27 +284,28 @@ def main(filePath):
     formattedOutput += f"\n\nTOP 10 BIGRAMMI (VERBO-SOSTANTIVO) MI:\n"+utils.createTable(getTop20Ngrams(verboNomeMI,10).values(), ["Mutual Information"], utils.tupleListToString(getTop20Ngrams(verboNomeMI,10).keys()))
     formattedOutput += f"\n\nTOP 10 BIGRAMMI (VERBO-SOSTANTIVO) LMI:\n"+utils.createTable(getTop20Ngrams(verboNomeLMI,10).values(), ["Mutual Information"], utils.tupleListToString(getTop20Ngrams(verboNomeLMI,10).keys()))
     if(len(verboNomeCommon.values())<1):
-        formattedOutput += "\n\nNon ci sono bigrammi (VERBO-SOSTANTIVO) in comune tra la lisat dei top 10 ordianti per Mutual Information e Local Mutual Information. \n"
+        formattedOutput += "\n\nNon ci sono bigrammi (VERBO-SOSTANTIVO) in comune tra la lista dei top 10 ordianti per Mutual Information e Local Mutual Information. \n"
     else:   
         formattedOutput += f"\n\nBIGRAMMI (VERBO-SOSTANTIVO) IN COMUNE TRA MI E LMI:\n"+utils.createTable(utils.tupleListToString(verboNomeCommon.keys()) ,[""], range(len(verboNomeCommon.values())), False)
     formattedOutput += f"\n\nTOP 10 BIGRAMMI (SOSTANTIVO-VERBO) MI:\n"+utils.createTable(getTop20Ngrams(nomeVerboMI,10).values(), ["Mutual Information"], utils.tupleListToString(getTop20Ngrams(nomeVerboMI,10).keys()))
     formattedOutput += f"\n\nTOP 10 BIGRAMMI (SOSTANTIVO-VERBO) LMI:\n"+utils.createTable(getTop20Ngrams(nomeVerboLMI,10).values(), ["Mutual Information"], utils.tupleListToString(getTop20Ngrams(nomeVerboLMI,10).keys()))
     if(len(nomeVerboCommon.values())<1):
-        formattedOutput += "\n\nNon ci sono bigrammi (SOSTANTIVO-VERBO) in comune tra la lisat dei top 10 ordianti per Mutual Information e Local Mutual Information. \n"
+        formattedOutput += "\n\nNon ci sono bigrammi (SOSTANTIVO-VERBO) in comune tra la lista dei top 10 ordianti per Mutual Information e Local Mutual Information. \n"
     else:
         formattedOutput += f"\n\nBIGRAMMI (SOSTANTIVO-VERBO) IN COMUNE TRA MI E LMI:\n"+utils.createTable(utils.tupleListToString(nomeVerboCommon.keys()), [""], range(len(nomeVerboCommon.values())), False)
     
     #Media distribuzione di frequena delle frasi 
     fraseDistMax,fraseDistMin = getSentenceWith(corpus.getSentenceList(),corpus.getTokenList())
-    formattedOutput += f"\nLa frase con distribuzione di frequenza maggiore e' [{fraseDistMax[0]}], con un valore di {fraseDistMax[1]}\n"
-    formattedOutput += f"\nLa frase con distribuzione di frequenza minore e' [{fraseDistMin[0]}], con un valore di {fraseDistMin[1]}\n"
+    formattedOutput += f"\nLa frase con distribuzione di frequenza media maggiore e' [{fraseDistMax[0]}], con un valore di {fraseDistMax[1]}\n"
+    formattedOutput += f"\nLa frase con distribuzione di frequenza media minore e' [{fraseDistMin[0]}], con un valore di {fraseDistMin[1]}\n"
     
     highestProbableSentence = getHighestProbableSentence(corpus.getTokenList(),corpus.getSentenceList())
     formattedOutput += f"\nLa frase a cui il Modello di Markov di ordine 2 costruito sul corpus {corpus.getFileName()} assegna probabilita' maggiore e' {highestProbableSentence[0]}, con P={highestProbableSentence[1]}.\n\n"
     NE = getNE(corpus.getTokenList())
     for key in NE.keys():
         formattedOutput+= f"\n\nTOP 15 TOKEN DELLA CLASSE NE-{key} ORDINATI PER FREQUENZA DECRESCENTE:"+ utils.createTable(NE[key].values(), ['Frequenza'], NE[key].keys())
-    print(formattedOutput)
+    
+    utils.writeFile(f"../results/results_programma2_{((corpus.getFileName()).split('.'))[0]}",formattedOutput)
     return
 
 if __name__ == '__main__':
