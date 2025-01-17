@@ -9,15 +9,10 @@ import pandas as pd
 import numpy as np
 from collections import Counter, defaultdict
 from nltk.corpus import stopwords 
+from MarkovModel2 import MarkovModel2 as MKmodel
  
 # nltk.download('stopwords')
 
-"""
-4. I top-10 bigrammi compos> da Verbo e Sostan>vo, ordina> per: 
-    d. MI (Mutual Informa>on) massima, e rela>vo valore di MI 
-    e. LMI (Local Mutual Informa>on) massima, e rela>vo valore di MI 
-    f. Calcolare e stampare il numero di elemen> comuni ai top-10 per MI e per LMI
-"""
 
 def POSTagging(token):
     """Esegue il POS tagging su una lista di token (parole), 
@@ -141,12 +136,45 @@ def LMI(MIDict, bigramsDic):
     return LMIDict
 
 def commonElem(MIDict,LMIDict):
+    """trova gli elemnti in comune tra due dizionari
+
+    Args:
+        MIDict (dict): dizionario dei bigrammi con MI associata
+        LMIDict (dict): dizionario dei bigrammi con LMI associata
+
+    Returns:
+        dict: dizionario dei bigrammi comuni
+    """
     common = {}
-    for key,value in MIDict.items():
-        LMIValue = LMIDict.get(key)
+    for key,value in getTop20Ngrams(MIDict, 10).items():
+        LMIValue = getTop20Ngrams(LMIDict, 10).get(key)
         if LMIValue != None:
             common[key] = (value,LMIValue)
     return common
+
+def halfNotHapax(freq, tokenizedSentence):
+    tot = len(tokenizedSentence)
+    s = 0
+    for t in tokenizedSentence:
+        if freq.get(t) >1:
+            s+=1
+    return s>=(tot/2)
+    
+def getSentenceWith(sentenceList, tokens):
+    freq = Counter(tokens)
+    #prendo le frasi che hanno lunghezza frasi compresa tra 10 e 20 token: 
+    sentenceSubset = [nltk.tokenize.word_tokenize(x) for x in sentenceList if (len(nltk.tokenize.word_tokenize(x)) in range(10,21)) and halfNotHapax(freq,nltk.tokenize.word_tokenize(x))]
+    # due dizionari composti da un solo elemento la frase, che è anche chiave e il valore della media di distribuzione di frequenza
+    distDict = dict([(" ".join(x) , sum([freq.get(t)/len(tokens) for t in x])/len(x)) for x in sentenceSubset])
+    
+    return (max(distDict),max(distDict.values())),(min(distDict),min(distDict.values()))
+
+def getHighestProbableSentence(tokens, sentences):
+    modello = MKmodel(tokens)
+    sentenceProbDict = dict([(s,modello.getProbability(s)) for s in sentences])
+    return(sorted(sentenceProbDict.items())[0])
+        
+    
 
 def main(filePath):
     #inzializzazione dell'istanza per il corpus
@@ -198,9 +226,9 @@ def main(filePath):
     #creo la lista contenente gli ngrammi di tag con relativa frequenza abbinata di dimensione 1,2,3,4,5
     ngramsTagLList = [ngramsPOSTagging(corpus.getTokenList(),1),ngramsPOSTagging(corpus.getTokenList(),2),ngramsPOSTagging(corpus.getTokenList(),3),ngramsPOSTagging(corpus.getTokenList(),4),ngramsPOSTagging(corpus.getTokenList(),5)]
     # formatto l'output
-    # print(ngramsTagLList[1].keys())
+   
     for index in range(5):
-        formattedOutput += f"\n\nTOP 20 {index+1}-GRAMMI PRESENTI NEL FILE {corpus.getFileName()}:\n"+utils.createTable(ngramsTagLList[index].values(),['Frequenza'], utils. tupleListToString(ngramsTagLList[index].keys()))+"\n"
+        formattedOutput += f"\n\nTOP 20 {index+1}-GRAMMI DI POS-TAG PRESENTI NEL FILE {corpus.getFileName()}:\n"+utils.createTable(ngramsTagLList[index].values(),['Frequenza'], utils. tupleListToString(ngramsTagLList[index].keys()))+"\n"
 
     #Punto 4-> i bigrammi Verbo-Sostantivo quindi sia VERB -> verbo NOUN->SOSTANTIVO (VERB,NOUN) (NOUN,VERB)
     #Creo un dizionario che contiene tutti e soli i bigrammi composti da Nome-Verbo e da Verbo nome con associata relativa frequenza
@@ -229,14 +257,25 @@ def main(filePath):
     nomeVerboCommon = dict(commonElem(getTop20Ngrams(nomeVerboMI,10), getTop20Ngrams(nomeVerboLMI,10)))
     
     formattedOutput += f"\n\nTOP 10 BIGRAMMI (VERBO-SOSTANTIVO) MI:\n"+utils.createTable(getTop20Ngrams(verboNomeMI,10).values(), ["Mutual Information"], utils.tupleListToString(getTop20Ngrams(verboNomeMI,10).keys()))
-    formattedOutput += f"\n\nTOP 10 BIGRAMMI (SOSTANTIVO-VERBO) MI:\n"+utils.createTable(getTop20Ngrams(nomeVerboMI,10).values(), ["Mutual Information"], utils.tupleListToString(getTop20Ngrams(nomeVerboMI,10).keys()))
     formattedOutput += f"\n\nTOP 10 BIGRAMMI (VERBO-SOSTANTIVO) LMI:\n"+utils.createTable(getTop20Ngrams(verboNomeLMI,10).values(), ["Mutual Information"], utils.tupleListToString(getTop20Ngrams(verboNomeLMI,10).keys()))
+    if(len(verboNomeCommon.values())<1):
+        formattedOutput += "\n\nNon ci sono bigrammi (VERBO-SOSTANTIVO) in comune tra la lisat dei top 10 ordianti per Mutual Information e Local Mutual Information. \n"
+    else:   
+        formattedOutput += f"\n\nBIGRAMMI (VERBO-SOSTANTIVO) IN COMUNE TRA MI E LMI:\n"+utils.createTable(utils.tupleListToString(verboNomeCommon.keys()) ,[""], range(len(verboNomeCommon.values())), False)
+    formattedOutput += f"\n\nTOP 10 BIGRAMMI (SOSTANTIVO-VERBO) MI:\n"+utils.createTable(getTop20Ngrams(nomeVerboMI,10).values(), ["Mutual Information"], utils.tupleListToString(getTop20Ngrams(nomeVerboMI,10).keys()))
     formattedOutput += f"\n\nTOP 10 BIGRAMMI (SOSTANTIVO-VERBO) LMI:\n"+utils.createTable(getTop20Ngrams(nomeVerboLMI,10).values(), ["Mutual Information"], utils.tupleListToString(getTop20Ngrams(nomeVerboLMI,10).keys()))
-    formattedOutput += f"\n\nTOP 10 BIGRAMMI (VERBO-SOSTANTIVO) IN COMUNE TRA MI E LMI:\n"+utils.createTable(verboNomeCommon.values() ,["MI","LMI"], utils.tupleListToString(verboNomeCommon.keys()))
-    formattedOutput += f"\n\nTOP 10 BIGRAMMI (SOSTANTIVO-VERBO) IN COMUNE TRA MI E LMI:\n"+utils.createTable(nomeVerboCommon.values(), ["MI","LMI"], utils.tupleListToString(nomeVerboCommon.keys()))
+    if(len(nomeVerboCommon.values())<1):
+        formattedOutput += "\n\nNon ci sono bigrammi (SOSTANTIVO-VERBO) in comune tra la lisat dei top 10 ordianti per Mutual Information e Local Mutual Information. \n"
+    else:
+        formattedOutput += f"\n\nBIGRAMMI (SOSTANTIVO-VERBO) IN COMUNE TRA MI E LMI:\n"+utils.createTable(utils.tupleListToString(nomeVerboCommon.keys()), [""], range(len(nomeVerboCommon.values())), False)
     
+    #Media distribuzione di frequena delle frasi 
+    fraseDistMax,fraseDistMin = getSentenceWith(corpus.getSentenceList(),corpus.getTokenList())
+    formattedOutput += f"\nLa frase con distribuzione di frequenza maggiore e' [{fraseDistMax[0]}], con un valore di {fraseDistMax[1]}\n"
+    formattedOutput += f"\nLa frase con distribuzione di frequenza minore e' [{fraseDistMin[0]}], con un valore di {fraseDistMin[1]}\n"
     
-    
+    highestProbableSentence = getHighestProbableSentence(corpus.getTokenList(),corpus.getSentenceList())
+    formattedOutput += f"\nLa frase a cui il Modello di Markov di ordine 2 costruito sul corpus {corpus.getFileName()} assegna probabilita' maggiore e' {highestProbableSentence[0]}, con P={highestProbableSentence[1]}.\n\n"
     print(formattedOutput)
     return
 
