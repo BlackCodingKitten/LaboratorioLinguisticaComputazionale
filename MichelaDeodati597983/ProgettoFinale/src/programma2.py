@@ -154,64 +154,157 @@ def commonElem(MIDict,LMIDict):
     return common
 
 def halfNotHapax(freq, tokenizedSentence):
+    """
+    Determina se almeno la metà dei token in una frase non sono hapax (ovvero token che appaiono più di una volta).
+
+    Argomenti:
+    - freq (dict): Un dizionario delle frequenze dei token (di solito prodotto da `Counter`).
+    - tokenizedSentence (list): Una lista di token che rappresenta una frase.
+
+    Restituisce:
+    - bool: True se almeno la metà dei token della frase non sono hapax, False altrimenti.
+    """
+    # Calcola il numero totale di token nella frase
     tot = len(tokenizedSentence)
+
+    # Inizializza un contatore per i token che appaiono più di una volta
     s = 0
+
+    # Itera su ogni token nella frase
     for t in tokenizedSentence:
-        if freq.get(t) >1:
-            s+=1
-    return s>=(tot/2)
-    
-def getSentenceWith(sentenceList, tokens):
+        if freq.get(t) > 1:  # Se il token appare più di una volta
+            s += 1  # Incrementa il contatore
+
+    # Verifica se almeno la metà dei token non sono hapax
+    return s >= (tot / 2)
+  
+def getSentenceWithHigherLowerMeanDist(sentenceList, tokens):
+    """
+    Identifica le frasi che soddisfano criteri specifici e calcola la media della distribuzione di frequenza dei token.
+
+    Argomenti:
+    - sentenceList (list): Una lista di frasi (stringhe).
+    - tokens (list): Una lista di token (parole o punteggiatura) utilizzata per calcolare le frequenze.
+
+    Restituisce:
+    - dict: Un dizionario in cui la chiave è una frase e il valore è la media della distribuzione di frequenza dei token nella frase.
+    """
+
+    # Conta la frequenza di ciascun token nella lista dei token
     freq = Counter(tokens)
-    #prendo le frasi che hanno lunghezza frasi compresa tra 10 e 20 token: 
-    sentenceSubset = [nltk.tokenize.word_tokenize(x) for x in sentenceList if (len(nltk.tokenize.word_tokenize(x)) in range(10,21)) and halfNotHapax(freq,nltk.tokenize.word_tokenize(x))]
-    # due dizionari composti da un solo elemento la frase, che è anche chiave e il valore della media di distribuzione di frequenza
-    distDict = dict([(" ".join(x) , sum([freq.get(t)/len(tokens) for t in x])/len(x)) for x in sentenceSubset])
-    
+
+    # Filtra le frasi che soddisfano i seguenti criteri:
+    # - La lunghezza (in termini di token) è compresa tra 10 e 20.
+    # - La funzione halfNotHapax restituisce True per la frase (significa che la frase ha almeno metà dei token non unici).
+    sentenceSubset = [
+        nltk.tokenize.word_tokenize(x)  # Tokenizza la frase
+        for x in sentenceList
+        if (len(nltk.tokenize.word_tokenize(x)) in range(10, 21))  # Lunghezza tra 10 e 20 token
+        and halfNotHapax(freq, nltk.tokenize.word_tokenize(x))  # Almeno metà dei token non sono hapax
+    ]
+
+    # Crea un dizionario in cui:
+    # - La chiave è la frase originale (ricostruita dalla lista di token).
+    # - Il valore è la media della distribuzione di frequenza dei token nella frase.
+    #   Ogni frequenza relativa è calcolata come freq.get(t) / len(tokens), e la media è normalizzata per il numero di token nella frase.
+    distDict = dict([
+        (
+            " ".join(x),  # Ricostruisce la frase originale dalla lista di token
+            sum([freq.get(t) / len(tokens) for t in x]) / len(x)  # Calcola la media della distribuzione di frequenza
+        )
+        for x in sentenceSubset
+    ])
+  
     return (max(distDict),max(distDict.values())),(min(distDict),min(distDict.values()))
 
 def getHighestProbableSentence(tokens, sentences):
+    """
+    Determina la frase con la probabilità più alta tra un insieme di frasi,
+    calcolata utilizzando un modello di Markov costruito sui token forniti.
+    Se la probabilità di una frase è zero, viene utilizzata una versione smussata.
+
+    Args:
+        tokens (list): Lista di token su cui costruire il modello di Markov.
+        sentences (list): Lista di frasi di cui calcolare la probabilità.
+
+    Returns:
+        tuple: Una coppia contenente la frase con la probabilità più alta e il suo valore di probabilità.
+    """
+    # Costruisce un modello di Markov basato sui token forniti
     modello = MKmodel(tokens)
-    sentenceProbDict = dict([(s,modello.getProbability(s)) for s in sentences])
-    return(sorted(sentenceProbDict.items())[0])
+    
+    # Dizionario per memorizzare la probabilità di ogni frase
+    sentenceProbDict = {}
+    
+    # Itera attraverso ogni frase nella lista delle frasi
+    for s in sentences:
+        # Calcola la probabilità della frase usando il modello
+        prob = modello.getProbability(s)
+        
+        # Se la probabilità è zero, utilizza la funzione di probabilità smussata
+        if prob == 0:
+            prob = modello.getSmoothProbability(s)
+        
+        # Memorizza la frase e la sua probabilità nel dizionario
+        sentenceProbDict[s] = prob
+    # print(sentenceProbDict)
+    
+    # Ordina il dizionario per probabilità e restituisce la prima frase con la sua probabilità
+    return sorted(sentenceProbDict.items(), key=lambda x: -x[1])[0]
         
 def getNE(tokens):
-    tokenPOSList =  list(nltk.pos_tag(tokens))
+    """
+     Esegue il part-of-speech tagging su di essi, esegue il chunking per riconoscere le entità nominate (NER), e restituisce un dizionario in cui le chiavi sono i tag delle entità nominate e i valori sono dizionari di entità riconosciute con le loro frequenze.
+
+    Argomenti:
+    - tokens (list): Una lista di token (parole o punteggiatura) da analizzare.
+
+    Restituisce:
+    - dict: Un dizionario in cui le chiavi sono i tag delle entità riconosciute (es. PERSON, ORGANIZATION, ecc.) 
+            e i valori sono altri dizionari contenenti le entità riconosciute con le loro frequenze.
+    """
+
+    # Assegna il part-of-speech (POS) a ciascun token
+    tokenPOSList = list(nltk.pos_tag(tokens))
+
+    # Esegue il chunking per il riconoscimento delle entità nominate
     NE_tree = nltk.ne_chunk(tokenPOSList)
+
+    # Inizializza una lista per memorizzare le entità riconosciute
     NE = []
+
+    # Itera attraverso l'albero delle entità nominate
     for node in NE_tree:
-        if hasattr(node, 'label'):
-            NE.append((node.label()," ".join([t for t, POS in node.leaves()])))
+        if hasattr(node, 'label'):  # Verifica se il nodo rappresenta un'entità nominata
+            NE.append((node.label(), " ".join([t for t, POS in node.leaves()])))
+
+    # Inizializza un dizionario per memorizzare le entità e le loro frequenze
     NEDict = {}
+
+    # Itera attraverso le entità riconosciute
     for index in range(len(NE)):
         (tag, token) = NE[index]
-        if NEDict.get(tag) != None:
-            if NEDict[tag].get(token) != None:
+        if NEDict.get(tag) is not None:  # Se il tag esiste già
+            if NEDict[tag].get(token) is not None:  # Se l'entità esiste già
                 NEDict[tag][token] += 1
-            else:
+            else:  # Se l'entità non esiste
                 NEDict[tag][token] = 1
-        else:
+        else:  # Se il tag non esiste
             NEDict[tag] = {token: 1}
-            
-    for key,value in NEDict.items():
-        # prendo i primi 15 elementi dopo avelo ordianato
+
+    # Limita ciascun tag alle 15 entità più frequenti
+    for key, value in NEDict.items():
         NEDict[key] = dict(sorted(value.items(), key=lambda item: item[1], reverse=True)[:15])
-    return(NEDict)
+
+    return NEDict
+
         
             
         
 
 def main(filePath):
     #inzializzazione dell'istanza per il corpus
-    corpus=Corpus(filePath)
-    #leggo il file
-    corpus.setText(utils.readFile(filePath))
-    #creo la lista di token (non ordinata)
-    corpus.setTokenList(utils.tokenSplitter(corpus.getText()))
-    #creo la lista di frasi
-    corpus.setSentenceList(utils.sentenceSplitter(corpus.getText()))
-    #creo il vocabolario delle parole tipo
-    corpus.setVocabulary()
+    corpus=Corpus(filePath,utils.readFile(filePath), sortFlag=False)
     #inizializzo la stringa che verrà poi scritta nell'output e conterrà il file formattato
     formattedOutput = ''
     
@@ -295,7 +388,7 @@ def main(filePath):
         formattedOutput += f"\n\nBIGRAMMI (SOSTANTIVO-VERBO) IN COMUNE TRA MI E LMI:\n"+utils.createTable(utils.tupleListToString(nomeVerboCommon.keys()), [""], range(len(nomeVerboCommon.values())), False)
     
     #Media distribuzione di frequena delle frasi 
-    fraseDistMax,fraseDistMin = getSentenceWith(corpus.getSentenceList(),corpus.getTokenList())
+    fraseDistMax,fraseDistMin = getSentenceWithHigherLowerMeanDist(corpus.getSentenceList(),corpus.getTokenList())
     formattedOutput += f"\nLa frase con distribuzione di frequenza media maggiore e' [{fraseDistMax[0]}], con un valore di {fraseDistMax[1]}\n"
     formattedOutput += f"\nLa frase con distribuzione di frequenza media minore e' [{fraseDistMin[0]}], con un valore di {fraseDistMin[1]}\n"
     
@@ -305,7 +398,7 @@ def main(filePath):
     for key in NE.keys():
         formattedOutput+= f"\n\nTOP 15 TOKEN DELLA CLASSE NE-{key} ORDINATI PER FREQUENZA DECRESCENTE:"+ utils.createTable(NE[key].values(), ['Frequenza'], NE[key].keys())
     
-    utils.writeFile(f"../results/results_programma2_{((corpus.getFileName()).split('.'))[0]}",formattedOutput)
+    utils.writeFile(utils.crateResultsFilePath(2,((corpus.getFileName()).split('.'))[0]),formattedOutput)
     return
 
 if __name__ == '__main__':

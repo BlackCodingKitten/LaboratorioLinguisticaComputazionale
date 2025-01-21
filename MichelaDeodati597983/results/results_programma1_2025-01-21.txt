@@ -1,0 +1,92 @@
+
+                 ChildrenStories_Corpus.txt  Cryptography_Corpus.txt  Differenza
+Numero di Token                        5352                     5997         645
+
+
+
+                    ChildrenStories_Corpus.txt  Cryptography_Corpus.txt  Differenza
+Numero Parole Tipo                        1103                     1434         331
+
+
+
+                 ChildrenStories_Corpus.txt  Cryptography_Corpus.txt  Differenza
+Numero di Frasi                         328                      257          71
+
+
+TTR INCREMENTALE A CONFRONTO:
+
+            ChildrenStories_Corpus.txt  Cryptography_Corpus.txt
+200 token                        0.045                    0.030
+400 token                        0.022                    0.015
+600 token                        0.017                    0.012
+800 token                        0.025                    0.051
+1000 token                       0.054                    0.141
+1200 token                       0.076                    0.147
+1400 token                       0.071                    0.171
+1600 token                       0.091                    0.151
+1800 token                       0.109                    0.148
+2000 token                       0.133                    0.162
+2200 token                       0.155                    0.176
+2400 token                       0.174                    0.185
+2600 token                       0.190                    0.188
+2800 token                       0.184                    0.206
+3000 token                       0.181                    0.222
+3200 token                       0.186                    0.232
+3400 token                       0.192                    0.235
+3600 token                       0.192                    0.230
+3800 token                       0.206                    0.242
+4000 token                       0.214                    0.236
+4200 token                       0.228                    0.234
+4400 token                       0.218                    0.242
+4600 token                       0.211                    0.238
+4800 token                       0.206                    0.247
+5000 token                       0.209                    0.249
+5200 token                       0.206                    0.249
+5400 token                       0.206                    0.240
+5600 token                         NaN                    0.236
+5800 token                         NaN                    0.236
+5997 token                         NaN                    0.239
+
+
+                             ChildrenStories_Corpus.txt  Cryptography_Corpus.txt  Differenza
+Media N caratteri per frase                      73.341                  149.615      76.274
+
+
+
+                             ChildrenStories_Corpus.txt  Cryptography_Corpus.txt  Differenza
+Media N caratteri per token                       3.736                    5.572       1.836
+
+
+
+                     ChildrenStories_Corpus.txt  Cryptography_Corpus.txt
+Numero Lemmi Totali                        1062                     1337
+
+                       ChildrenStories_Corpus.txt  Cryptography_Corpus.txt  Differenza
+Media Lemmi per frase                       3.238                    5.202       1.964
+
+
+DISTRIBUZIONE POS:
+
+     ChildrenStories_Corpus.txt Cryptography_Corpus.txt
+.                         73.1%                   67.7%
+VERB                       1.0%                    0.2%
+PRT                        2.9%                    2.1%
+DET                        0.3%                    0.9%
+NOUN                      10.3%                   22.3%
+ADP                        1.6%                    3.7%
+CONJ                       1.3%                    0.0%
+ADV                        0.4%                    0.9%
+PRON                       9.1%                    0.2%
+NUM                        0.0%                    1.1%
+ADJ                        0.0%                    0.9%
+
+
+
+                            Negative Distribution %  Positive Distribution %
+ChildrenStories_Corpus.txt                    42.38                    57.62
+Cryptography_Corpus.txt                       42.80                    57.20
+
+
+POLARITA' DEL DOCUMENTO:
+La Polarità del documento ChildrenStories_Corpus.txt e' Positiva.
+La Polarita' del documento Cryptography_Corpus.txt e' Positiva.

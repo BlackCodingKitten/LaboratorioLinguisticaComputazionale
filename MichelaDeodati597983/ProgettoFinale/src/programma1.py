@@ -8,6 +8,7 @@ import pandas as pd
 import numpy as np
 import Corpus
 import utils
+from collections import Counter
 
 # nltk.download("wordnet")
 # nltk.download('averaged_perceptron_tagger_eng')
@@ -31,6 +32,8 @@ warnings.filterwarnings(
     message="The parameter 'token_pattern' will not be used since 'tokenizer' is not None"
 )
 
+
+##########################-FUNZIONI-############################
 def polarityClassificationTrainer():
     """Funzione che crea, addestra e salva un modello di sentiment analysis.
     Il modello viene creato utilizzando un pipeline composta da un vettorizzatore TF-IDF
@@ -177,8 +180,9 @@ def lemmatizer(tokens):
        string list: ritorna la lista di dei lemmi 
     """    
     lemmatzr = WordNetLemmatizer()
-    lemma_list = [lemmatzr.lemmatize(t.lower()) for t in tokens]
-    return set(sorted(lemma_list))
+    lemma_list = [lemmatzr.lemmatize(t) for t in tokens]
+    lemmaFreqDict = dict(Counter(lemma_list))
+    return lemmaFreqDict
     
 def POSDistribution(fileNameC1,fileNameC2,tokenC1,tokenC2):
     """Calcola la distribuzione di frequenza delle POS per ciascuna delle liste di token e le trasforma in un dataframe Pandas
@@ -198,7 +202,7 @@ def POSDistribution(fileNameC1,fileNameC2,tokenC1,tokenC2):
             #ho già incontrato il tag, incremento il valore corrispondente al file 1
             POSDictTuple[POS]=[((POSDictTuple[POS])[0])+1,0]
         else:
-            #non ho mai incontrato il tag in quastione, aggiungo la cella corrispondente
+            #non ho mai incontrato il tag in questione, aggiungo la cella corrispondente
             POSDictTuple[POS]= [1,0]
             
     for token,POS in nltk.tag.pos_tag((tokenC2)[:1000], tagset='universal'):
@@ -211,32 +215,15 @@ def POSDistribution(fileNameC1,fileNameC2,tokenC1,tokenC2):
     return utils.createTable([[f"{x/10}%",f"{y/10}%"] for [x,y] in POSDictTuple.values()], [fileNameC1,fileNameC2], POSDictTuple.keys())#i valori sono calcolati in percentuale (x/1000)*100-> x/10 -> valore%
 
 
-
-    
-def main(filePath1,filePath2, resultfilePath = utils.crateResultsFilePath()):
+########################-MAIN-############################### 
+def main(filePath1,filePath2, resultfilePath = utils.crateResultsFilePath(1)):
     
     # definisco le istanze dei due corpus
-    c1 = Corpus.Corpus(filePath1)
-    c2 = Corpus.Corpus(filePath2)
+    c1 = Corpus.Corpus(filePath1, utils.readFile(filePath1), sortFlag=True)
+    c2 = Corpus.Corpus(filePath2, utils.readFile(filePath2), sortFlag=True)
     
     # definisco e inizializzo la variabile in cuoi salverò l'output formattatato
     formattedOutput = ""
-    
-    # Leggo il contenuto dei due file passati come argomento e restituisco il testo come unica stringa
-    c1.setText(utils.readFile(filePath1))
-    c2.setText(utils.readFile(filePath2))
-    
-    # divido i testi dei sue file in liste di frasi e li salvo
-    c1.setSentenceList(utils.sentenceSplitter(c1.getText()))
-    c2.setSentenceList(utils.sentenceSplitter(c2.getText()))
-   
-    # divido i file in liste di token e le salvo (ordinate alfabeticamente)
-    c1.setTokenList(sorted(utils.tokenSplitter(c1.getText())))
-    c2.setTokenList(sorted(utils.tokenSplitter(c2.getText())))
-    
-    # creo i vocabolari con le frequenze assolute delle parole tipo
-    if not (c1.setVocabulary() and  c2.setVocabulary()):
-        print ("Errore!! Impossibile creare i vocabolari dei due corpus.")
         
     # calcolo la differenza nel numero di token e formatto l'output
     differenzaNumeroToken = lenListDiff((c1.getTokenList(), c2.getTokenList()))
@@ -258,30 +245,32 @@ def main(filePath1,filePath2, resultfilePath = utils.crateResultsFilePath()):
     maxLen = max(len(incrementalTTRc1),len(incrementalTTRc2))
     incrementalTTRc1 += [np.nan]*(maxLen-len(incrementalTTRc1))
     incrementalTTRc2 += [np.nan]*(maxLen-len(incrementalTTRc2))
-    # fomratto l'output
+    # formratto l'output
     index = [f"{i*200} token" for i in range(1,maxLen)]
     index.append(f"{max(len(c1.getTokenList()),len(c2.getTokenList()))} token")
     df = pd.DataFrame({c1.getFileName():incrementalTTRc1,c2.getFileName():incrementalTTRc2}, index)
     formattedOutput += "TTR INCREMENTALE A CONFRONTO:\n\n"+df.to_string()+"\n\n"
     
-    # media dei caratteri per frase salvati in un dizionario ed associati al nome del file
+    # media dei caratteri per frase
     mediaCharFrasiC1 = charMean(c1.getSentenceList())
     mediaCharFrasiC2 = charMean(c2.getSentenceList())
    
-    # calcolo la differenza
+    # calcolo la differenza e inserisco in tabella
     differenzaMediaCharFrasi = abs(mediaCharFrasiC2 - mediaCharFrasiC1)
     formattedOutput += utils.createTable([[mediaCharFrasiC1,mediaCharFrasiC2,differenzaMediaCharFrasi]],[c1.getFileName(),c2.getFileName(),"Differenza"],["Media N caratteri per frase"])+"\n\n"
     
-     # media dei caratteri per token 
+    # media dei caratteri per token 
     mediaCharTokenC1 = charMean(c1.getTokenList())
     mediaCharTokenC2 = charMean(c2.getTokenList())
-    # calcolo della differenza 
+    # calcolo della differenza  e inserisco in tabella
     differenzaMediaCharToken = abs(mediaCharTokenC2-mediaCharTokenC1)
     formattedOutput += utils.createTable([[mediaCharTokenC1,mediaCharTokenC2,differenzaMediaCharToken]],[c1.getFileName(),c2.getFileName(),"Differenza"],["Media N caratteri per token"])+"\n\n"    
     
-    #Calcolo numero dei lemmi distinti salvati in ordine alfabetico in un dizionario ed associati al nome del file
-    c1.setLemmaList(lemmatizer(c1.getTokenList()))
-    c2.setLemmaList(lemmatizer(c2.getTokenList()))
+    #Creo a partire dalla lista dei token il set distinto di lemmi contenuti nel corpus e 
+    lemmaDictList = [lemmatizer(c1.getTokenList()),lemmatizer(c2.getTokenList())]
+    c1.setLemmaList(lemmaDictList[0].keys())
+    c2.setLemmaList(lemmaDictList[1].keys())
+    #formatto l'output inserendo in tabella la lunghezza dei lemmi distinti
     formattedOutput += utils.createTable([[len(c1.getLemmaList()),len(c2.getLemmaList())]], [c1.getFileName(),c2.getFileName()], ["Numero Lemmi Totali"])
     
     # calcolo la media dei lemmi per frase arrotondata a 3 cifre decimali

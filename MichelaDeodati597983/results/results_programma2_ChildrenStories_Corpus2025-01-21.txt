@@ -1,0 +1,575 @@
+
+TOP 50 AGGETTIVI PRESENTI NEL FILE ChildrenStories_Corpus.txt
+            Frequenza
+little             18
+other              11
+big                10
+strong              9
+new                 6
+special             5
+most                5
+happy               5
+full                4
+curious             4
+same                4
+best                4
+right               4
+fast                4
+sure                4
+light               3
+ordinary            3
+tiny                3
+first               3
+deep                3
+beautiful           3
+young               3
+warm                3
+bad                 3
+few                 3
+more                3
+small               3
+ready               3
+great               3
+sad                 3
+friendly            3
+bright              2
+faster              2
+shiny               2
+eager               2
+advanced            2
+bent                2
+high                2
+powerful            2
+perfect             2
+better              2
+sunny               2
+wide                2
+smart               2
+finish              2
+proud               2
+next                2
+scientific          2
+different           2
+hard                2
+
+
+TOP 50 SOSTANTIVI PRESENTI NEL FILE ChildrenStories_Corpus.txt
+            Frequenza
+Nimbus             27
+Zelo               25
+Charlie            24
+Max                23
+boy                22
+Spark              22
+things             20
+Ellie              17
+energy             15
+day                15
+everything         15
+village            15
+Laura              15
+car                14
+dad                13
+time               12
+world              11
+Sofia              11
+bridge              9
+someone             9
+something           8
+light               8
+way                 8
+parents             8
+cat                 8
+mother              8
+metal               8
+children            8
+robot               7
+waves               7
+heart               7
+matter              7
+track               7
+strength            7
+tower               7
+Quantum             6
+Processor           6
+Orla                6
+place               6
+Photon              6
+Glade               6
+river               6
+others              6
+thing               6
+motion              6
+blocks              6
+forest              5
+friend              5
+forces              5
+stone               5
+
+
+TOP 50 AVVERBI PRESENTI NEL FILE ChildrenStories_Corpus.txt
+             Frequenza
+n't                 38
+how                 32
+just                24
+when                14
+even                13
+always               9
+so                   9
+too                  9
+where                8
+more                 8
+there                7
+carefully            7
+down                 7
+slowly               6
+together             6
+very                 6
+most                 5
+When                 5
+Once                 4
+enough               4
+ahead                4
+finally              4
+why                  4
+quickly              4
+again                4
+sometimes            4
+else                 3
+forward              3
+faster               3
+never                3
+Maybe                3
+not                  3
+really               3
+around               3
+back                 3
+gently               3
+up                   3
+instead              2
+closely              2
+safely               2
+softly               2
+Sometimes            2
+fast                 2
+excitedly            2
+So                   2
+Then                 2
+perfectly            2
+exactly              2
+better               2
+differently          1
+
+
+TOP 20 MONOGRAMMI PRESENTI NEL FILE ChildrenStories_Corpus.txt:
+
+      Frequenza
+,           347
+.           289
+the         247
+to          128
+and         124
+a           109
+was          96
+his          79
+of           67
+he           67
+in           59
+that         56
+``           52
+''           52
+with         46
+it           38
+n't          38
+I            37
+He           37
+how          32
+
+
+TOP 20 BIGRAMMI PRESENTI NEL FILE ChildrenStories_Corpus.txt:
+
+                Frequenza
+(,, and)               56
+(., ``)                43
+(., He)                37
+(in, the)              22
+(,, he)                20
+(of, the)              18
+(., The)               18
+(was, n't)             17
+(,, the)               17
+(!, '')                17
+(., '')                16
+(the, boy)             16
+(was, a)               14
+(,, but)               13
+(the, village)         13
+(how, to)              12
+(a, little)            12
+(., Zelo)              11
+(the, world)           11
+(., As)                11
+
+
+TOP 20 TRIGRAMMI PRESENTI NEL FILE ChildrenStories_Corpus.txt:
+
+                      Frequenza
+(was, n't, just)              8
+(,, and, the)                 7
+(the, Photon, Glade)          6
+(., ``, I)                    6
+(in, the, village)            6
+(in, the, world)              5
+(., He, realized)             5
+(He, realized, that)          5
+(., It, was)                  5
+(,, and, he)                  5
+(From, that, day)             5
+(Once, upon, a)               4
+(upon, a, time)               4
+(a, time, ,)                  4
+(time, ,, in)                 4
+(,, in, a)                    4
+(,, there, was)               4
+(there, was, a)               4
+(., One, day)                 4
+(One, day, ,)                 4
+
+
+
+La percentuale di Stopwords presenti nel testo ChildrenStories_Corpus.txt e' 40.1%
+
+Nel corpus ChildrenStories_Corpus.txt ci sono 497 pronimi in totale, in rapporto al totale dei token equivale al 9.286%, per ogni frase ci sono in media, circa, 1.515 pronomi.
+
+
+
+TOP 20 1-GRAMMI DI POS-TAG PRESENTI NEL FILE ChildrenStories_Corpus.txt:
+
+        Frequenza
+(NOUN)       1086
+(VERB)       1032
+(.)           783
+(PRON)        497
+(DET)         468
+(ADP)         464
+(ADV)         355
+(ADJ)         290
+(PRT)         189
+(CONJ)        165
+(NUM)          18
+(X)             5
+
+
+
+TOP 20 2-GRAMMI DI POS-TAG PRESENTI NEL FILE ChildrenStories_Corpus.txt:
+
+              Frequenza
+(NOUN, .)           388
+(DET, NOUN)         310
+(NOUN, VERB)        282
+(PRON, VERB)        271
+(ADJ, NOUN)         174
+(ADP, DET)          169
+(., NOUN)           163
+(., PRON)           160
+(NOUN, ADP)         154
+(VERB, ADP)         145
+(VERB, ADV)         144
+(VERB, DET)         140
+(VERB, PRON)        133
+(VERB, VERB)        126
+(PRON, NOUN)        111
+(DET, ADJ)          106
+(VERB, .)           105
+(., .)              104
+(ADP, PRON)         103
+(PRT, VERB)         102
+
+
+
+TOP 20 3-GRAMMI DI POS-TAG PRESENTI NEL FILE ChildrenStories_Corpus.txt:
+
+                    Frequenza
+(., PRON, VERB)           135
+(ADP, DET, NOUN)          130
+(DET, NOUN, .)             99
+(., NOUN, VERB)            97
+(DET, ADJ, NOUN)           90
+(VERB, DET, NOUN)          84
+(NOUN, ., PRON)            77
+(DET, NOUN, VERB)          75
+(ADJ, NOUN, .)             73
+(NOUN, ., NOUN)            71
+(NOUN, ., CONJ)            58
+(PRON, VERB, VERB)         57
+(NOUN, ADP, DET)           55
+(VERB, ADP, DET)           55
+(NOUN, VERB, ADV)          54
+(., DET, NOUN)             51
+(DET, NOUN, ADP)           49
+(PRON, NOUN, .)            49
+(NOUN, VERB, VERB)         46
+(ADP, NOUN, .)             46
+
+
+
+TOP 20 4-GRAMMI DI POS-TAG PRESENTI NEL FILE ChildrenStories_Corpus.txt:
+
+                        Frequenza
+(NOUN, ., PRON, VERB)          67
+(ADP, DET, NOUN, .)            57
+(NOUN, ., NOUN, VERB)          50
+(NOUN, ADP, DET, NOUN)         45
+(VERB, ADP, DET, NOUN)         44
+(VERB, DET, ADJ, NOUN)         37
+(NOUN, ., DET, NOUN)           28
+(DET, ADJ, NOUN, .)            28
+(ADP, PRON, NOUN, .)           27
+(., PRON, VERB, VERB)          27
+(., DET, NOUN, VERB)           27
+(DET, NOUN, ., PRON)           27
+(., ., NOUN, VERB)             26
+(., ., PRON, VERB)             26
+(ADP, DET, ADJ, NOUN)          24
+(NOUN, ADP, NOUN, .)           23
+(ADP, DET, NOUN, VERB)         22
+(VERB, DET, NOUN, .)           22
+(VERB, DET, NOUN, ADP)         22
+(., PRON, VERB, ADV)           22
+
+
+
+TOP 20 5-GRAMMI DI POS-TAG PRESENTI NEL FILE ChildrenStories_Corpus.txt:
+
+                              Frequenza
+(DET, NOUN, ., PRON, VERB)           24
+(NOUN, ADP, DET, NOUN, .)            21
+(VERB, ADP, DET, NOUN, .)            18
+(DET, NOUN, ADP, DET, NOUN)          16
+(NOUN, ., PRON, VERB, VERB)          16
+(ADP, DET, ADJ, NOUN, .)             15
+(ADP, DET, NOUN, ., PRON)            15
+(DET, NOUN, ., NOUN, VERB)           15
+(NOUN, ., DET, NOUN, VERB)           14
+(NOUN, VERB, DET, ADJ, NOUN)         12
+(ADJ, NOUN, ., NOUN, VERB)           12
+(VERB, NOUN, ., NOUN, VERB)          11
+(ADJ, NOUN, ., PRON, VERB)           11
+(NOUN, VERB, ADP, DET, NOUN)         11
+(PRON, VERB, ADP, DET, NOUN)         11
+(NOUN, ., PRON, VERB, ADP)           11
+(ADP, DET, NOUN, ., NOUN)            11
+(NOUN, ADP, PRON, NOUN, .)           11
+(VERB, DET, ADJ, NOUN, ADP)          10
+(NOUN, ., CONJ, PRON, VERB)          10
+
+
+
+TOP 10 BIGRAMMI (VERBO-SOSTANTIVO) ORDIANTI PER FREQUENZA ASSOLUTA:
+
+                      Frequenza Assoluta  Frequenza Relativa
+(do, things)                           5            0.000934
+(help, others)                         2            0.000374
+(helping, others)                      2            0.000374
+(named, Zelo)                          1            0.000187
+(had, something)                       1            0.000187
+(allowed, Zelo)                        1            0.000187
+(understand, things)                   1            0.000187
+(named, Orla)                          1            0.000187
+(said, Orla)                           1            0.000187
+(sparkling, wall)                      1            0.000187
+
+
+
+TOP 10 BIGRAMMI (SOSTANTIVO-VERBO) ORDIANTI PER FREQUENZA ASSOLUTA:
+
+                  Frequenza Assoluta  Frequenza Relativa
+(Spark, was)                       6            0.001121
+(Zelo, was)                        3            0.000561
+(Charlie, was)                     3            0.000561
+(Charlie, loved)                   3            0.000561
+(parents, were)                    3            0.000561
+(Nimbus, was)                      3            0.000561
+(Max, was)                         3            0.000561
+(boy, was)                         3            0.000561
+(robot, named)                     2            0.000374
+(forest, was)                      2            0.000374
+
+
+
+TOP 10 BIGRAMMI (VERBO-SOSTANTIVO) ORDIANTI PER CONDITIONAL PROBABILITY:
+
+                       Probabilita' Condizionata
+called    diffraction                        1.0
+disrupted everything                         1.0
+glowing   symbols                            1.0
+shaped    everything                         1.0
+connects  everything                         1.0
+solving   puzzles                            1.0
+passing   tests—it                           1.0
+colorful  leaves                             1.0
+paid      attention                          1.0
+chase     balls                              1.0
+
+
+TOP 10 BIGRAMMI (SOSTANTIVO-VERBO) ORDIANTI PER CONDITIONAL PROBABILITY:
+
+                      Probabilita' Condizionata
+girl       named                            1.0
+owl        named                            1.0
+phenomenon called                           1.0
+key        was                              1.0
+river—it   flowed                           1.0
+air        shimmered                        1.0
+glade      stood                            1.0
+core       hummed                           1.0
+tests—it   could                            1.0
+birds      singing                          1.0
+
+
+TOP 10 BIGRAMMI (VERBO-SOSTANTIVO) ORDIANTI PER JOINT PROBABILITY:
+
+                       Probabilita' Congiunta
+(do, things)                         0.000934
+(help, others)                       0.000561
+(helping, others)                    0.000374
+(named, Zelo)                        0.000187
+(had, something)                     0.000187
+(understand, things)                 0.000187
+(named, Orla)                        0.000187
+(said, Orla)                         0.000187
+(sparkling, wall)                    0.000187
+(called, diffraction)                0.000187
+
+
+TOP 10 BIGRAMMI (SOSTANTIVO-VERBO) ORDIANTI PER JOINT PROBABILITY:
+
+                  Probabilita' Congiunta
+(Spark, was)                    0.001121
+(Zelo, was)                     0.000561
+(Charlie, was)                  0.000561
+(Charlie, loved)                0.000561
+(parents, were)                 0.000561
+(Nimbus, was)                   0.000561
+(Max, was)                      0.000561
+(boy, was)                      0.000561
+(Zelo, had)                     0.000374
+(world, was)                    0.000374
+
+
+TOP 10 BIGRAMMI (VERBO-SOSTANTIVO) MI:
+
+                       Mutual Information
+(called, diffraction)           12.385862
+(solving, puzzles)              12.385862
+(passing, tests—it)             12.385862
+(blazing, fires)                12.385862
+(take, shape)                   12.385862
+(staying, calm)                 12.385862
+(asking, questions)             12.385862
+(glowing, symbols)              11.385862
+(colorful, leaves)              11.385862
+(chase, balls)                  11.385862
+
+
+TOP 10 BIGRAMMI (VERBO-SOSTANTIVO) LMI:
+
+                       Mutual Information
+(do, things)                    30.319672
+(helping, others)               17.601800
+(help, others)                  14.200920
+(called, diffraction)           12.385862
+(solving, puzzles)              12.385862
+(passing, tests—it)             12.385862
+(blazing, fires)                12.385862
+(take, shape)                   12.385862
+(staying, calm)                 12.385862
+(asking, questions)             12.385862
+
+
+BIGRAMMI (VERBO-SOSTANTIVO) IN COMUNE TRA MI E LMI:
+
+                     
+(called, diffraction)
+   (solving, puzzles)
+  (passing, tests—it)
+     (blazing, fires)
+        (take, shape)
+      (staying, calm)
+  (asking, questions)
+
+
+TOP 10 BIGRAMMI (SOSTANTIVO-VERBO) MI:
+
+                      Mutual Information
+(phenomenon, called)           12.385862
+(air, shimmered)               12.385862
+(core, hummed)                 12.385862
+(birds, singing)               12.385862
+(hammers, striking)            12.385862
+(river—it, flowed)             11.385862
+(leaves, shimmer)              11.385862
+(life, took)                   11.385862
+(nature, kicked)               11.385862
+(story, showed)                11.385862
+
+
+TOP 10 BIGRAMMI (SOSTANTIVO-VERBO) LMI:
+
+                      Mutual Information
+(Spark, was)                   23.558585
+(parents, were)                20.402700
+(girl, named)                  18.771725
+(Charlie, loved)               17.056268
+(Max, wagged)                  15.724601
+(Nimbus, meowed)               15.261950
+(robot, named)                 15.157015
+(Spark, explained)             13.209005
+(everything, worked)           12.957944
+(Charlie, thought)             12.431875
+
+
+Non ci sono bigrammi (SOSTANTIVO-VERBO) in comune tra la lista dei top 10 ordianti per Mutual Information e Local Mutual Information. 
+
+La frase con distribuzione di frequenza media maggiore e' [his dad said , giving him a high five .], con un valore di 0.02379172894867962
+
+La frase con distribuzione di frequenza media minore e' [A group of children was sitting in a park , looking very upset .], con un valore di 0.003176382660687594
+
+La frase a cui il Modello di Markov di ordine 2 costruito sul corpus ChildrenStories_Corpus.txt assegna probabilita' maggiore e' "Yes!, con P=1.0.
+
+
+
+TOP 15 TOKEN DELLA CLASSE NE-PERSON ORDINATI PER FREQUENZA DECRESCENTE:
+                   Frequenza
+Zelo                      25
+Nimbus                    25
+Charlie                   24
+Spark                     22
+Max                       21
+Ellie                     15
+Laura                     14
+Sofia                     10
+Orla                       6
+Quantum Processor          1
+Hours                      1
+Soon                       1
+
+
+TOP 15 TOKEN DELLA CLASSE NE-ORGANIZATION ORDINATI PER FREQUENZA DECRESCENTE:
+                   Frequenza
+Photon Glade               6
+Quantum Processor          2
+Quantum                    2
+Magical Forest             1
+Ellie                      1
+Laura                      1
+Max                        1
+
+
+TOP 15 TOKEN DELLA CLASSE NE-GPE ORDINATI PER FREQUENZA DECRESCENTE:
+          Frequenza
+Nimbus            2
+Dad               1
+Balance           1
+Johnsons          1
+Max               1

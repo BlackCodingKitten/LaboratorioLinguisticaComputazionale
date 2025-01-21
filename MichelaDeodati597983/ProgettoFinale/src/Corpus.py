@@ -1,4 +1,6 @@
 from collections import Counter
+import nltk
+
 class Corpus:
     """
     Classe che rappresenta un corpus di testo. Fornisce metodi per gestire e manipolare
@@ -18,15 +20,17 @@ class Corpus:
         fileName (str): Nome del file estratto dal percorso.
     """
 
-    def __init__(self, filePath):
+    def __init__(self, filePath, text, sortFlag):
         """
         Inizializza un'istanza della classe Corpus con il percorso del file e inizializza
         tutti gli attributi a valori predefiniti vuoti.
         """
-        self.text = ""  # Contenuto testuale del corpus
-        self.tokenList = []  # Lista di token (parole e simboli) estratti
-        self.v = {}  # Vocabolario del corpus con frequenze dei token
-        self.sentence = []  # Lista di frasi estratte dal testo
+        self.text = text  # Contenuto testuale del corpus
+        self.tokenList = nltk.tokenize.word_tokenize(text)  # Lista di token (parole e simboli) estratti
+        if sortFlag:
+            self.tokenList = sorted(self.tokenList)
+        self.v = dict(Counter(self.tokenList)) # Vocabolario del corpus con frequenze dei token
+        self.sentence = nltk.tokenize.sent_tokenize(text)  # Lista di frasi estratte dal testo
         self.lemmaList = []  # Lista di lemmi estratti dal testo
         self.filePath = filePath  # Percorso completo del file
         # Estraggo il nome del file dal percorso
@@ -46,6 +50,8 @@ class Corpus:
         Returns:
             bool: True se l'operazione è completata.
         """
+        if type(text) != str:
+            return False
         self.text = text
         return True
 
@@ -59,22 +65,27 @@ class Corpus:
         Returns:
             bool: True se l'operazione è completata.
         """
+        if type(tokenList) != list:
+            return False
+        for t in tokenList:
+            if type(t) != str:
+                return False 
         self.tokenList = tokenList
         return True
 
-    def setVocabulary(self):
+    def setVocabulary(self, v):
         """
         Calcola e imposta il vocabolario del corpus utilizzando collections.Counter.
         Il vocabolario è un dizionario con token unici come chiavi e le loro frequenze come valori.
 
         Returns:
             bool: True se il vocabolario è stato impostato correttamente,
-                False se la lista dei token è vuota.
+
         """
-        if not self.tokenList:  # Verifica se la lista dei token è vuota
-            return False
         # Utilizza Counter per calcolare le frequenze dei token
-        self.v = dict(Counter(self.tokenList))
+        if type(v) != dict:
+            return False
+        self.v = v
         return True
 
 
@@ -88,6 +99,8 @@ class Corpus:
         Returns:
             bool: True se l'operazione è completata.
         """
+        # if type(lemmaList) != list:
+        #     return False
         self.lemmaList = lemmaList
         return True
 
@@ -101,6 +114,11 @@ class Corpus:
         Returns:
             bool: True se l'operazione è completata.
         """
+        if type(lista) != list:
+            return False
+        for s in lista:
+            if type(s) != str:
+                return False
         self.sentence = lista
         return True
 

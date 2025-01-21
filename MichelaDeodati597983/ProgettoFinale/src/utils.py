@@ -1,4 +1,3 @@
-import nltk  
 import datetime  
 import pandas as pd
 
@@ -31,46 +30,15 @@ def readFile(filePath):
     except PermissionError:  # Gestione di errori di permesso
         print("Errore non hai i permessi per aprire questo file.")
 
-# Funzione per dividere un testo in frasi
-def sentenceSplitter(text):
-    """
-    Divide un testo in una lista di frasi.
-
-    Args:
-        text (str): Testo da suddividere.
-
-    Returns:
-        list: Lista di frasi estratte dal testo.
-    """
-    # Utilizzo del tokenizer di nltk per dividere il testo in frasi
-    sencenceList = nltk.tokenize.sent_tokenize(text)
-    return sencenceList
-
-# Funzione per dividere un testo in token
-def tokenSplitter(text):
-    """
-    Divide un testo in una lista di token e la ordina alfabeticamente.
-
-    Args:
-        text (str): Testo da suddividere in token.
-
-    Returns:
-        list: Lista ordinata alfabeticamente dei token estratti.
-    """
-    # Utilizzo del tokenizer di nltk per dividere il testo in parole
-    tokenList = nltk.tokenize.word_tokenize(text)
-    # Ordino alfabeticamente la lista dei token
-    return tokenList
-
 # Funzione per creare il percorso di un file di risultati
-def crateResultsFilePath():
+def crateResultsFilePath(number, add = ""):
     """
     Genera il percorso di base per salvare i risultati in una directory 'results'.
 
     Returns:
         str: Percorso del file di risultati con prefisso "results1_".
     """
-    return  "../results/results_programma1_"
+    return  f"../results/results_programma{number}_{add}"
 
 # Funzione per scrivere contenuti in un file
 def writeFile(filePath, toWrite):

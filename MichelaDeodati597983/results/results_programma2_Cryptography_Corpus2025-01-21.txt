@@ -1,0 +1,585 @@
+
+TOP 50 AGGETTIVI PRESENTI NEL FILE Cryptography_Corpus.txt
+                Frequenza
+cryptographic          72
+quantum                38
+such                   37
+digital                24
+key                    16
+classical              14
+critical               12
+significant            12
+secure                 11
+practical              11
+public                 10
+private                10
+potential               9
+technical               8
+computational           8
+new                     8
+modern                  7
+financial               7
+post-quantum            7
+sensitive               6
+traditional             6
+ethical                 6
+environmental           6
+unauthorized            5
+other                   5
+certain                 5
+advanced                5
+widespread              5
+public-key              4
+many                    4
+global                  4
+reliable                4
+vulnerable              4
+numerous                4
+robust                  4
+faster                  4
+geopolitical            4
+resistant               4
+broader                 4
+difficult               4
+various                 4
+current                 4
+essential               3
+mathematical            3
+asymmetric              3
+transformative          3
+malicious               3
+long-term               3
+fundamental             3
+national                3
+
+
+TOP 50 SOSTANTIVI PRESENTI NEL FILE Cryptography_Corpus.txt
+                Frequenza
+cryptography           85
+quantum                78
+security               49
+systems                39
+Bitcoin                38
+communication          26
+data                   24
+challenges             18
+key                    18
+secure                 18
+QKD                    17
+transactions           15
+Quantum                14
+privacy                14
+networks               13
+signatures             13
+transaction            13
+information            12
+integrity              12
+algorithms             12
+attacks                12
+techniques             11
+access                 11
+keys                   11
+protocols              11
+hash                   11
+infrastructure         11
+blockchain             11
+principles             11
+role                   10
+encryption             10
+communications         10
+computers              10
+Cryptography            9
+applications            9
+implications            9
+concerns                9
+management              9
+research                9
+system                  9
+network                 9
+process                 8
+technology              8
+technologies            7
+future                  7
+user                    7
+mechanism               7
+context                 7
+development             7
+block                   7
+
+
+TOP 50 AVVERBI PRESENTI NEL FILE Cryptography_Corpus.txt
+                 Frequenza
+not                     21
+also                    14
+particularly             7
+widely                   6
+where                    6
+exponentially            5
+even                     5
+Additionally             5
+most                     5
+more                     5
+only                     4
+when                     4
+When                     4
+Moreover                 4
+further                  4
+Furthermore              4
+still                    4
+securely                 3
+efficiently              3
+why                      3
+Even                     3
+often                    2
+increasingly             2
+theoretically            2
+inherently               2
+publicly                 2
+fundamentally            2
+yet                      2
+rather                   2
+heavily                  1
+rapidly                  1
+randomly                 1
+then                     1
+successfully             1
+undoubtedly              1
+computationally          1
+Once                     1
+essentially              1
+effectively              1
+subsequently             1
+practically              1
+quite                    1
+Here                     1
+However                  1
+extremely                1
+severely                 1
+highly                   1
+economically             1
+prohibitively            1
+already                  1
+
+
+TOP 20 MONOGRAMMI PRESENTI NEL FILE Cryptography_Corpus.txt:
+
+               Frequenza
+,                    365
+.                    257
+and                  252
+the                  243
+of                   195
+to                   140
+quantum              120
+a                    104
+cryptography          85
+in                    78
+cryptographic         73
+is                    62
+as                    49
+security              49
+for                   43
+that                  41
+systems               39
+Bitcoin               38
+such                  37
+The                   37
+
+
+TOP 20 BIGRAMMI PRESENTI NEL FILE Cryptography_Corpus.txt:
+
+                          Frequenza
+(,, and)                         49
+(of, quantum)                    48
+(quantum, cryptography)          46
+(., The)                         37
+(such, as)                       35
+(., This)                        24
+(in, the)                        20
+(,, the)                         19
+(of, the)                        19
+(cryptography, is)               17
+(,, such)                        17
+(cryptography, ,)                16
+(., In)                          15
+(cryptographic, systems)         14
+(,, quantum)                     13
+(and, quantum)                   13
+(,, which)                       12
+(of, cryptography)               12
+(., These)                       12
+(to, the)                        12
+
+
+TOP 20 TRIGRAMMI PRESENTI NEL FILE Cryptography_Corpus.txt:
+
+                                    Frequenza
+(of, quantum, cryptography)                23
+(,, such, as)                              17
+(,, quantum, cryptography)                  9
+(quantum, cryptography, is)                 8
+(of, cryptography, in)                      6
+(,, cryptography, is)                       6
+(the, context, of)                          6
+(., One, of)                                6
+(One, of, the)                              6
+(the, security, of)                         6
+(quantum, cryptographic, systems)           6
+(., Additionally, ,)                        5
+(., In, the)                                5
+(the, principles, of)                       5
+(principles, of, quantum)                   5
+(of, quantum, mechanics)                    5
+(quantum, cryptography, ,)                  5
+(quantum, communication, networks)          5
+(of, quantum, cryptographic)                5
+(quantum, cryptography, .)                  5
+
+
+
+La percentuale di Stopwords presenti nel testo Cryptography_Corpus.txt e' 31.4%
+
+Nel corpus Cryptography_Corpus.txt ci sono 76 pronimi in totale, in rapporto al totale dei token equivale al 1.267%, per ogni frase ci sono in media, circa, 0.296 pronomi.
+
+
+
+TOP 20 1-GRAMMI DI POS-TAG PRESENTI NEL FILE Cryptography_Corpus.txt:
+
+        Frequenza
+(NOUN)       1892
+(VERB)        829
+(ADJ)         759
+(.)           677
+(ADP)         632
+(DET)         523
+(CONJ)        270
+(PRT)         164
+(ADV)         163
+(PRON)         76
+(NUM)          12
+
+
+
+TOP 20 2-GRAMMI DI POS-TAG PRESENTI NEL FILE Cryptography_Corpus.txt:
+
+              Frequenza
+(NOUN, .)           590
+(ADJ, NOUN)         559
+(NOUN, ADP)         362
+(NOUN, NOUN)        324
+(DET, NOUN)         298
+(NOUN, VERB)        267
+(ADP, NOUN)         251
+(VERB, DET)         174
+(NOUN, CONJ)        173
+(DET, ADJ)          157
+(VERB, ADJ)         151
+(., NOUN)           150
+(ADP, DET)          146
+(ADP, ADJ)          144
+(., DET)            129
+(CONJ, NOUN)        126
+(VERB, NOUN)        118
+(., VERB)           114
+(VERB, VERB)        112
+(VERB, ADP)         101
+
+
+
+TOP 20 3-GRAMMI DI POS-TAG PRESENTI NEL FILE Cryptography_Corpus.txt:
+
+                    Frequenza
+(ADJ, NOUN, .)            200
+(NOUN, ADP, NOUN)         161
+(NOUN, NOUN, .)           147
+(NOUN, ., NOUN)           135
+(DET, ADJ, NOUN)          134
+(DET, NOUN, ADP)          127
+(ADP, ADJ, NOUN)          125
+(ADJ, NOUN, ADP)          118
+(NOUN, ., DET)            103
+(NOUN, CONJ, NOUN)        102
+(NOUN, ., VERB)           100
+(VERB, DET, NOUN)          98
+(ADP, DET, NOUN)           95
+(NOUN, ADP, ADJ)           94
+(VERB, ADJ, NOUN)          94
+(ADP, NOUN, NOUN)          82
+(ADJ, NOUN, VERB)          80
+(., DET, NOUN)             71
+(NOUN, ., ADP)             71
+(VERB, DET, ADJ)           67
+
+
+
+TOP 20 4-GRAMMI DI POS-TAG PRESENTI NEL FILE Cryptography_Corpus.txt:
+
+                         Frequenza
+(NOUN, ADP, ADJ, NOUN)          81
+(DET, NOUN, ADP, NOUN)          73
+(DET, ADJ, NOUN, ADP)           60
+(NOUN, ., DET, NOUN)            57
+(VERB, DET, ADJ, NOUN)          57
+(NOUN, ADP, NOUN, NOUN)         57
+(VERB, DET, NOUN, ADP)          55
+(ADP, ADJ, NOUN, .)             54
+(ADJ, NOUN, ADP, NOUN)          51
+(NOUN, ., NOUN, .)              44
+(NOUN, ADP, DET, NOUN)          43
+(NOUN, CONJ, NOUN, .)           41
+(ADJ, NOUN, ., DET)             39
+(ADJ, NOUN, ., NOUN)            38
+(DET, NOUN, ADP, ADJ)           37
+(NOUN, ., NOUN, NOUN)           36
+(ADP, DET, ADJ, NOUN)           36
+(ADJ, NOUN, ., VERB)            35
+(NOUN, NOUN, ., NOUN)           34
+(DET, ADJ, NOUN, .)             33
+
+
+
+TOP 20 5-GRAMMI DI POS-TAG PRESENTI NEL FILE Cryptography_Corpus.txt:
+
+                              Frequenza
+(NOUN, ADP, ADJ, NOUN, .)            36
+(VERB, DET, ADJ, NOUN, ADP)          33
+(DET, NOUN, ADP, ADJ, NOUN)          31
+(DET, ADJ, NOUN, ADP, NOUN)          30
+(DET, NOUN, ADP, NOUN, NOUN)         30
+(VERB, DET, NOUN, ADP, NOUN)         29
+(NOUN, ., NOUN, NOUN, .)             24
+(NOUN, ADP, NOUN, NOUN, .)           24
+(NOUN, VERB, DET, ADJ, NOUN)         23
+(NOUN, ., DET, NOUN, ADP)            22
+(NOUN, ., DET, NOUN, VERB)           21
+(ADJ, NOUN, ADP, ADJ, NOUN)          20
+(ADJ, NOUN, ., DET, NOUN)            20
+(NOUN, ., DET, ADJ, NOUN)            20
+(NOUN, ., NOUN, ., CONJ)             19
+(ADP, DET, ADJ, NOUN, .)             19
+(., DET, NOUN, ADP, NOUN)            19
+(NOUN, ., VERB, DET, NOUN)           18
+(NOUN, PRT, VERB, ADJ, NOUN)         18
+(ADJ, NOUN, ADP, DET, NOUN)          17
+
+
+
+TOP 10 BIGRAMMI (VERBO-SOSTANTIVO) ORDIANTI PER FREQUENZA ASSOLUTA:
+
+                            Frequenza Assoluta  Frequenza Relativa
+(addressing, challenges)                     3            0.000500
+(stored, data)                               2            0.000334
+(voting, systems)                            2            0.000334
+(secure, communications)                     2            0.000334
+(securing, communications)                   2            0.000334
+(securing, information)                      1            0.000167
+(transforming, data)                         1            0.000167
+(requiring, high-speed)                      1            0.000167
+(securing, communication)                    1            0.000167
+(encrypt, data)                              1            0.000167
+
+
+
+TOP 10 BIGRAMMI (SOSTANTIVO-VERBO) ORDIANTI PER FREQUENZA ASSOLUTA:
+
+                         Frequenza Assoluta  Frequenza Relativa
+(cryptography, is)                       17            0.002835
+(quantum, computing)                      5            0.000834
+(Bitcoin, is)                             3            0.000500
+(transaction, is)                         3            0.000500
+(systems, would)                          3            0.000500
+(Cryptography, ensures)                   2            0.000334
+(user, attempts)                          2            0.000334
+(systems, are)                            2            0.000334
+(Organizations, must)                     2            0.000334
+(challenge, is)                           2            0.000334
+
+
+
+TOP 10 BIGRAMMI (VERBO-SOSTANTIVO) ORDIANTI PER CONDITIONAL PROBABILITY:
+
+                               Probabilita' Condizionata
+voting       systems                                 1.0
+transforming data                                    1.0
+encrypt      data                                    1.0
+raising      concerns                                1.0
+establishing trust                                   1.0
+handling     payment                                 1.0
+underlies    cryptocurrencies                        1.0
+authenticate commands                                1.0
+disrupt      operations                              1.0
+Balancing    security                                1.0
+
+
+TOP 10 BIGRAMMI (SOSTANTIVO-VERBO) ORDIANTI PER CONDITIONAL PROBABILITY:
+
+                         Probabilita' Condizionata
+Organizations  must                            1.0
+researchers    are                             1.0
+transformation is                              1.0
+calls          traverse                        1.0
+attackers      gain                            1.0
+files          have                            1.0
+password       is                              1.0
+values         are                             1.0
+economy        depends                         1.0
+exchanges      use                             1.0
+
+
+TOP 10 BIGRAMMI (VERBO-SOSTANTIVO) ORDIANTI PER JOINT PROBABILITY:
+
+                            Probabilita' Congiunta
+(quantum, cryptography)                   0.007671
+(secure, communication)                   0.001334
+(addressing, challenges)                  0.000500
+(secure, communications)                  0.000500
+(stored, data)                            0.000334
+(voting, systems)                         0.000334
+(securing, communications)                0.000334
+(classified, information)                 0.000334
+(existing, communication)                 0.000334
+(verify, data)                            0.000167
+
+
+TOP 10 BIGRAMMI (SOSTANTIVO-VERBO) ORDIANTI PER JOINT PROBABILITY:
+
+                         Probabilita' Congiunta
+(cryptography, is)                     0.002835
+(quantum, computing)                   0.001668
+(systems, would)                       0.000500
+(Bitcoin, is)                          0.000500
+(transaction, is)                      0.000500
+(issues, related)                      0.000334
+(Cryptography, ensures)                0.000334
+(user, attempts)                       0.000334
+(systems, are)                         0.000334
+(Organizations, must)                  0.000334
+
+
+TOP 10 BIGRAMMI (VERBO-SOSTANTIVO) MI:
+
+                               Mutual Information
+(authenticate, commands)                12.550025
+(combating, terrorism)                  12.550025
+(educate, employees)                    12.550025
+(achieve, levels)                       12.550025
+(exhibit, correlations)                 12.550025
+(export, controls)                      12.550025
+(groundbreaking, advancement)           12.550025
+(increasing, pressure)                  12.550025
+(reduce, carbon)                        12.550025
+(requiring, high-speed)                 11.550025
+
+
+TOP 10 BIGRAMMI (VERBO-SOSTANTIVO) LMI:
+
+                            Mutual Information
+(addressing, challenges)             22.695396
+(voting, systems)                    14.529246
+(securing, communications)           14.456194
+(stored, data)                       13.930126
+(authenticate, commands)             12.550025
+(combating, terrorism)               12.550025
+(educate, employees)                 12.550025
+(achieve, levels)                    12.550025
+(exhibit, correlations)              12.550025
+(export, controls)                   12.550025
+
+
+BIGRAMMI (VERBO-SOSTANTIVO) IN COMUNE TRA MI E LMI:
+
+                        
+(authenticate, commands)
+  (combating, terrorism)
+    (educate, employees)
+       (achieve, levels)
+ (exhibit, correlations)
+      (export, controls)
+
+
+TOP 10 BIGRAMMI (SOSTANTIVO-VERBO) MI:
+
+                             Mutual Information
+(calls, traverse)                     12.550025
+(economy, depends)                    12.550025
+(advocates, contend)                  12.550025
+(populations, worldwide)              12.550025
+(laws, governing)                     12.550025
+(discussion, examines)                11.550025
+(TLS, encrypts)                       11.550025
+(attackers, gain)                     11.550025
+(backdoors, exemplifies)              11.550025
+(cyberattacks, underscores)           11.550025
+
+
+TOP 10 BIGRAMMI (SOSTANTIVO-VERBO) LMI:
+
+                         Mutual Information
+(cryptography, is)                72.656314
+(quantum, computing)              22.528156
+(Organizations, must)             19.930126
+(systems, would)                  19.582972
+(user, attempts)                  19.100051
+(threats, posed)                  18.760201
+(concerns, surrounding)           18.760201
+(issues, related)                 17.812338
+(researchers, are)                14.760201
+(mechanism, ensures)              14.315416
+
+
+Non ci sono bigrammi (SOSTANTIVO-VERBO) in comune tra la lista dei top 10 ordianti per Mutual Information e Local Mutual Information. 
+
+La frase con distribuzione di frequenza media maggiore e' [While cryptography is the cornerstone of Bitcoin 's security , it is not without challenges and limitations .], con un valore di 0.02243621810905453
+
+La frase con distribuzione di frequenza media minore e' [Advances in cryptographic research are enabling new applications and paradigms .], con un valore di 0.005669501417375353
+
+La frase a cui il Modello di Markov di ordine 2 costruito sul corpus Cryptography_Corpus.txt assegna probabilita' maggiore e' The debate over encryption backdoors exemplifies this tension., con P=1.0.
+
+
+
+TOP 15 TOKEN DELLA CLASSE NE-GPE ORDINATI PER FREQUENZA DECRESCENTE:
+               Frequenza
+Bitcoin               16
+Cryptography           1
+Things                 1
+BB84                   1
+Technology             1
+United States          1
+
+
+TOP 15 TOKEN DELLA CLASSE NE-PERSON ORDINATI PER FREQUENZA DECRESCENTE:
+                          Frequenza
+Bitcoin                          14
+Quantum                           6
+Cryptography                      5
+Bob                               4
+Shor                              3
+Quantum Key Distribution          2
+Symmetric                         1
+Blockchain                        1
+Beyond                            1
+Cryptographic                     1
+Poor                              1
+Charles Bennett                   1
+Gilles Brassard                   1
+Alice                             1
+Artur Ekert                       1
+
+
+TOP 15 TOKEN DELLA CLASSE NE-ORGANIZATION ORDINATI PER FREQUENZA DECRESCENTE:
+                              Frequenza
+QKD                                  18
+RSA                                   4
+Bitcoin                               4
+TLS                                   2
+ECC                                   2
+ECDSA                                 2
+Advanced Encryption Standard          1
+AES                                   1
+Transport Layer                       1
+Secure Sockets Layer                  1
+SSL                                   1
+HTTPS                                 1
+PKI                                   1
+Payment Card Industry Data            1
+Security Standard                     1
