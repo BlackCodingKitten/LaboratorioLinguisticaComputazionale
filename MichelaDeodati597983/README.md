@@ -13,7 +13,11 @@ Per quanto riguarda il classificatore di polarità del documento, è stato addes
 
 ### Training-Test set:
 Preso da questo link : [https://ai.stanford.edu/~amaas/data/sentiment/](https://ai.stanford.edu/~amaas/data/sentiment/)
+
 ## Programma2
+
+### Modello di Markov di ordine 2:
+Implementato come una classe, contiene anche la funzione di calclo della probabilità con lo smoothing
 
 ## Altro
 ### ProgettoFinale/src/utils.py e ProgettoFinale/src/Corpus.py
